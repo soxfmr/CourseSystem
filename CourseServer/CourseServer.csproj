@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{891E74EB-8B9C-47DE-86D9-0D08096C8293}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CourseServer</RootNamespace>
+    <AssemblyName>CourseServer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CourseServer.CourseServer</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>App.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="App.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrap.cs" />
+    <Compile Include="Builders\JSONRouteBuilder.cs" />
+    <Compile Include="Contract\ICacheDriver.cs" />
+    <Compile Include="Contract\IDispatcher.cs" />
+    <Compile Include="Contract\IRouteBuilder.cs" />
+    <Compile Include="Controllers\AttendanceController.cs" />
+    <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\DispatchController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="CourseDbContext.cs" />
+    <Compile Include="CourseServer.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Events\HandleEventArgs.cs" />
+    <Compile Include="ConfigurationLoader.cs" />
+    <Compile Include="Framework\DatabaseInfo.cs" />
+    <Compile Include="Framework\DbContextHelper.cs" />
+    <Compile Include="Framework\DispatchSource.cs" />
+    <Compile Include="Framework\FileSystemCacheDriver.cs" />
+    <Compile Include="Framework\HttpListenerRequestHandler.cs" />
+    <Compile Include="Framework\HttpListenerResponseHandler.cs" />
+    <Compile Include="Framework\MiddlewareRegister.cs" />
+    <Compile Include="Framework\ReflectHelper.cs" />
+    <Compile Include="Framework\RequestHandler.cs" />
+    <Compile Include="Framework\ResponseHandler.cs" />
+    <Compile Include="Framework\Route.cs" />
+    <Compile Include="Framework\DispatcherImpl.cs" />
+    <Compile Include="Framework\RouteDispatchInfo.cs" />
+    <Compile Include="Framework\RouteHandlerInfo.cs" />
+    <Compile Include="Framework\RouteInfo.cs" />
+    <Compile Include="Framework\Server.cs" />
+    <Compile Include="Framework\ServerInfo.cs" />
+    <Compile Include="Framework\Session.cs" />
+    <Compile Include="Framework\SessionInfo.cs" />
+    <Compile Include="Framework\Validator.cs" />
+    <Compile Include="GlobalSettings.cs" />
+    <Compile Include="Helper\Auth.cs" />
+    <Compile Include="Middlewares\AuthMiddleware.cs" />
+    <Compile Include="Middlewares\Middleware.cs" />
+    <Compile Include="Model\SystemLog.cs" />
+    <Compile Include="Model\Permission.cs" />
+    <Compile Include="Model\Broadcast.cs" />
+    <Compile Include="Model\CourseAppliy.cs" />
+    <Compile Include="Model\Feedback.cs" />
+    <Compile Include="Model\Absence.cs" />
+    <Compile Include="Model\AbsenceReason.cs" />
+    <Compile Include="Model\Attendance.cs" />
+    <Compile Include="Model\Grade.cs" />
+    <Compile Include="Model\AbsenceType.cs" />
+    <Compile Include="Model\Join.cs" />
+    <Compile Include="Model\Course.cs" />
+    <Compile Include="Model\Dispatch.cs" />
+    <Compile Include="Model\Major.cs" />
+    <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\Manager.cs" />
+    <Compile Include="Model\Classroom.cs" />
+    <Compile Include="Model\PasswordReset.cs" />
+    <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\RolePermission.cs" />
+    <Compile Include="Model\Teacher.cs" />
+    <Compile Include="Model\Student.cs" />
+    <Compile Include="Repositories\CourseRepository.cs" />
+    <Compile Include="Repositories\DispatchRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Framework\UserConfiguration.cs" />
+    <Compile Include="Utils\Dumper.cs" />
+    <Compile Include="Utils\GenericUtils.cs" />
+    <Compile Include="Utils\Guard.cs" />
+    <Compile Include="Utils\PlatformCompact.cs" />
+    <Compile Include="Utils\TextUtils.cs" />
+    <Compile Include="Views\CourseView.cs" />
+    <Compile Include="Views\DispatchView.cs" />
+    <Compile Include="Views\GenericView.cs" />
+    <Compile Include="Views\LoginView.cs" />
+    <Compile Include="Views\RegisterView.cs" />
+    <Compile Include="Views\UserView.cs" />
+    <Compile Include="Views\View.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevOne.Security.Cryptography.BCrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.1.0.0.0\lib\DevOne.Security.Cryptography.BCrypt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CourseProvider\CourseProvider.csproj">
+      <Project>{d02b03c7-ab4f-48f0-b063-30d946e15176}</Project>
+      <Name>CourseProvider</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
