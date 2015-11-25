@@ -10,9 +10,14 @@ namespace CourseServer.Model
     [Table("absence_reasons")]
     public class AbsenceReason : Model
     {
+        public AbsenceReason()
+        {
+            Changeable = true;
+        }
+
         public string Reason { get; set; }
 
-        public int Status { get; set; }
+        public bool Changeable { get; set; }
 
         public int DispatchId { get; set; }
 

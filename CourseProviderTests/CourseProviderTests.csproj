@@ -60,6 +60,7 @@
     <Compile Include="ProviderBridgeTests.cs" />
     <Compile Include="ProviderCarrierTests.cs" />
     <Compile Include="ProviderParserTests.cs" />
+    <Compile Include="Providers\DispatchCourseProviderTests.cs" />
     <Compile Include="Providers\LoginProviderTests.cs" />
     <Compile Include="Providers\ProfileProviderTests.cs" />
   </ItemGroup>

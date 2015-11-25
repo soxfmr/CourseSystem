@@ -10,9 +10,7 @@ namespace CourseServer.Model
     [Table("absences")]
     public class Absence : Model
     {
-        public int AbsenceTypeId { get; set; }
-
-        public virtual AbsenceType AbsenceType { get; set; }
+        public string Type { get; set; }
 
         public int DispatchId { get; set; }
 

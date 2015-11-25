@@ -10,7 +10,7 @@ namespace CourseServer.Model
     [Table("grades")]
     public class Grade : Model
     {
-        public uint Score { get; set; }
+        public int Score { get; set; }
 
         public int DispatchId { get; set; }
 

@@ -53,7 +53,6 @@ namespace CourseProvider.Providers
                     }
                     break;
                 default:
-                    Console.WriteLine(e.Payload);
                     break;
             }
 

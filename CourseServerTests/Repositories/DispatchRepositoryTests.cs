@@ -26,5 +26,62 @@ namespace CourseServer.Repositories.Tests
 
             JObject obj = JObject.Parse(s);*/
         }
+
+        [TestMethod()]
+        public void GetDispatchListTest1()
+        {
+
+        }
+
+        [TestMethod()]
+        public void JoinCourseTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            DispatchRepository dp = new DispatchRepository();
+
+            Assert.AreEqual(true, dp.JoinCourse(1, 1));
+            Assert.AreEqual(false, dp.JoinCourse(1, 2));
+        }
+
+        [TestMethod()]
+        public void RemoveCourseTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            DispatchRepository dp = new DispatchRepository();
+
+            Assert.AreEqual(true, dp.RemoveCourseList(1, new int[] { 1 }));
+        }
+
+        [TestMethod()]
+        public void GetDispatchListTest2()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            DispatchRepository dp = new DispatchRepository();
+
+            Assert.AreEqual(1, dp.GetDispatchList(1, 0).Count);
+        }
+
+        [TestMethod()]
+        public void GetApplyDispatchCourseTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            DispatchRepository dp = new DispatchRepository();
+
+            var list = dp.GetAvailableCourse();
+        }
+
+        [TestMethod()]
+        public void RemoveCourseTest1()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            DispatchRepository dp = new DispatchRepository();
+
+            Assert.AreEqual(true, dp.RemoveCourseList(1, new int[] { 1 }));
+        }
     }
 }

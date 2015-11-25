@@ -24,11 +24,11 @@ namespace CourseServer.Repositories.Tests
         [TestMethod()]
         public void RegisterTest()
         {
-            //DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString);
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
-            //UserRepository repo = new UserRepository();
+            UserRepository repo = new UserRepository();
 
-            //Assert.IsTrue(0 == repo.Register("bullshit@gmail.com", "bullshit", "bullshit", 0));
+            Assert.IsTrue(0 == repo.Register("iamstudent@gmail.com", "IamStudent", "password", 0));
         }
 
         [TestMethod()]

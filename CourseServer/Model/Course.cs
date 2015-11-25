@@ -22,5 +22,7 @@ namespace CourseServer.Model
         public int TeacherId { get; set; }
 
         public virtual Teacher Teacher { get; set; }
+
+        public virtual IList<Dispatch> Dispatches { get; set; }
     }
 }

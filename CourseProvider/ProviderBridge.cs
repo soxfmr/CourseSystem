@@ -25,7 +25,7 @@ namespace CourseProvider
         }
 
         /// <summary>
-        /// Send the carrier to the server with the request code that will be passed to the callback function
+        /// Send the carrier to the server with the request code which will be passed to the callback function
         /// </summary>
         /// <param name="requestCode"></param>
         /// <param name="carrier"></param>
@@ -59,7 +59,7 @@ namespace CourseProvider
                 // Payload data to be send
                 byte[] payload = Encoding.UTF8.GetBytes(carrier.ToString());
 
-                request = (HttpWebRequest)WebRequest.Create(uriScheme);
+                request = (HttpWebRequest) WebRequest.Create(uriScheme);
                 request.Method = "POST";
                 request.ContentLength = payload.Length;
                 request.UserAgent = equipmentDesc;

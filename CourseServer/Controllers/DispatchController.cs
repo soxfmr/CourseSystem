@@ -18,8 +18,8 @@ namespace CourseServer.Controllers
             DispatchView view = new DispatchView();
             DispatchRepository dispatchRepo = new DispatchRepository();
 
-            List<Dispatch> dispatchList = dispatchRepo.GetDispatchList(Auth.User());
-            return view.Show(dispatchList);
+            var result = dispatchRepo.GetAvailableCourse();
+            return view.ShowAvailableCourse(result);
         }
     }
 }

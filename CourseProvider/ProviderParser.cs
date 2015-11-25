@@ -78,6 +78,36 @@ namespace CourseProvider
             return default(M);
         }
 
+        public List<M> SerializeList<M>()
+        {
+            JToken token = GetPayloadToken();
+            if (token != null)
+            {
+                List<M> PayloadList = token.ToObject<List<M>>();
+                if (PayloadList != null && PayloadList.Count > 0)
+                {
+                    return PayloadList;
+                }
+            }
+
+            return default(List<M>);
+        }
+
+        public Dictionary<K, V> SerializeDict<K, V>()
+        {
+            JToken token = GetPayloadToken();
+            if (token != null)
+            {
+                Dictionary<K, V> dict = token.ToObject<Dictionary<K, V>>();
+                if (dict != null && dict.Count > 0)
+                {
+                    return dict;
+                }
+            }
+
+            return default(Dictionary<K, V>);
+        }
+
         public JToken GetPayloadToken()
         {
             return GetToken(CourseProviderContract.KEY_PAYLOAD);

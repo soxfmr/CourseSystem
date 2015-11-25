@@ -65,20 +65,14 @@ namespace CourseServer.Views
         /// <returns></returns>
         public string Success()
         {
-            return Success(jArray : null);
+            return Success(token: null);
         }
 
-        public string Success(JArray jArray)
-        {
-            JObject responseData = new JObject();
-            responseData.Add(new JProperty(CourseProviderContract.KEY_ERROR, CourseProviderContract.RESULT_SUCCESS));
-
-            if (jArray != null)
-                responseData.Add(CourseProviderContract.KEY_PAYLOAD, jArray);
-
-            return responseData.ToString();
-        }
-
+        /// <summary>
+        /// Serialized a object to JSON with the custom key.
+        /// </summary>
+        /// <param name="jProperty"></param>
+        /// <returns></returns>
         public string Success(JProperty jProperty)
         {
             JObject responseData = new JObject();
@@ -90,13 +84,18 @@ namespace CourseServer.Views
             return responseData.ToString();
         }
 
-        public string Success(JObject jObject)
+        /// <summary>
+        /// Serialized a object to JSON with the default key.
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public string Success(JToken token)
         {
             JObject responseData = new JObject();
             responseData.Add(new JProperty(CourseProviderContract.KEY_ERROR, CourseProviderContract.RESULT_SUCCESS));
 
-            if (jObject != null)
-                responseData.Add(jObject);
+            if (token != null)
+                responseData.Add(CourseProviderContract.KEY_PAYLOAD, token);
 
             return responseData.ToString();
         }

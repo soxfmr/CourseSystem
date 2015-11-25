@@ -65,5 +65,15 @@ namespace CourseServer.Framework.Tests
         {
 
         }
+
+        [TestMethod()]
+        public void GetClassTypeTest1()
+        {
+            ReflectHelper reflectHelper = new ReflectHelper();
+            reflectHelper.setGlobalNamespace("CourseServer.Controllers");
+            Type t = reflectHelper.GetClassType("TestController");
+
+            Assert.IsNull(t);
+        }
     }
 }

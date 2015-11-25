@@ -19,6 +19,21 @@ namespace CourseProvider.Models
             }
         }
 
+        private int id;
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                NotifyPropertyChanged("Id");
+            }
+        }
+
         private string name;
 
         public string Name {
@@ -30,6 +45,22 @@ namespace CourseProvider.Models
             {
                 name = value;
                 NotifyPropertyChanged("Name");
+            }
+        }
+
+        private string description;
+
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+
+            set
+            {
+                description = value;
+                NotifyPropertyChanged("Description");
             }
         }
 
@@ -113,7 +144,24 @@ namespace CourseProvider.Models
             set
             {
                 current = value;
+                Remain = Limit - Current;
+
                 NotifyPropertyChanged("Current");
+            }
+        }
+
+        private int remain;
+
+        public int Remain
+        {
+            get
+            {
+                return remain;
+            }
+            set
+            {
+                remain = value;
+                NotifyPropertyChanged("Remain");
             }
         }
     }

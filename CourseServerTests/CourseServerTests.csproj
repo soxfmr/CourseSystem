@@ -66,6 +66,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Builders\JSONRouteBuilderTests.cs" />
+    <Compile Include="Controllers\AbsenceControllerTests.cs" />
     <Compile Include="Controllers\CourseControllerTests.cs" />
     <Compile Include="Controllers\UserControllerTests.cs" />
     <Compile Include="CourseDbContextTests.cs" />
@@ -79,11 +80,13 @@
     <Compile Include="Framework\ValidatorTests.cs" />
     <Compile Include="Model\ModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AbsenceRepostiroyTests.cs" />
     <Compile Include="Repositories\CourseRepositoryTests.cs" />
     <Compile Include="Repositories\DispatchRepositoryTests.cs" />
     <Compile Include="Repositories\UserRepositoryTests.cs" />
     <Compile Include="Utils\DumperTests.cs" />
     <Compile Include="Utils\GenericUtilsTests.cs" />
+    <Compile Include="Views\DispatchViewTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CourseServer\CourseServer.csproj">

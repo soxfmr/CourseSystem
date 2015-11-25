@@ -10,7 +10,7 @@ namespace CourseServer.Model
     [Table("attendances")]
     public class Attendance : Model
     {
-        public uint Population { get; set; }
+        public int Population { get; set; }
 
         public int DispatchId { get; set; }
 

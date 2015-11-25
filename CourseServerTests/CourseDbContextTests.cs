@@ -37,16 +37,26 @@ namespace CourseServer.Tests
             using (var db = DbContextHelper.NewInstance())
             {
                 var majors = db.Set<Major>();
-                Major major = new Major { Name = "电子系", Description = "计算机" };
+                Major major = new Major { Name = "萌系", Description = "专业卖萌20年" };
+                Major majorEle = new Major { Name = "电子系", Description = "专业修电脑20年" };
                 majors.Add(major);
+                majors.Add(majorEle);
 
                 var teachers = db.Set<Teacher>();
                 Teacher teacher = new Teacher { Name = "John", Email = "john@gmail.com", Password = Guard.Encrypt("password") };
                 teachers.Add(teacher);
 
+                var students = db.Set<Student>();
+                Student student = new Student { Name = "Yuge", Email = "yuge@gmail.com", Password = Guard.Encrypt("password") };
+                students.Add(student);
+
+                // var teacher = teachers.Where(t => t.Id == 1).FirstOrDefault();
+
                 var courses = db.Set<Course>();
-                Course course = new Course { Name = "C#", Description = "Microsoft .Net", Major = major, Teacher = teacher };
+                Course course = new Course { Name = "反卖萌的研究", Description = "深入了解卖萌心里，卖萌比卖淫更可耻！", Major = major, Teacher = teacher };
+                Course courseCS = new Course { Name = "C#", Description = "Microsoft .Net 平台开发", Major = majorEle, Teacher = teacher };
                 courses.Add(course);
+                courses.Add(courseCS);
 
                 var classrooms = db.Set<Classroom>();
                 Classroom classroom = new Classroom { Number = 404, Location = "Little place" };
@@ -58,13 +68,25 @@ namespace CourseServer.Tests
                     Teacher = teacher,
                     Course = course,
                     Enable = true,
-                    Current = 2,
+                    Current = 0,
                     Weekday = 1,
                     At = DateTime.Now,
-                    Limit = 10,
+                    Limit = 50,
+                    Classroom = classroom
+                };
+                Dispatch dispatchCS = new Dispatch
+                {
+                    Teacher = teacher,
+                    Course = courseCS,
+                    Enable = true,
+                    Current = 0,
+                    Weekday = 2,
+                    At = DateTime.Now,
+                    Limit = 100,
                     Classroom = classroom
                 };
                 dispatches.Add(dispatch);
+                dispatches.Add(dispatchCS);
 
                 db.SaveChanges();
                 

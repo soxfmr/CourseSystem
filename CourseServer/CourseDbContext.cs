@@ -24,7 +24,6 @@ namespace CourseServer
         // public virtual DbSet<Join> Joins { get; set; }
         public virtual DbSet<Grade> Grades { get; set; }
         public virtual DbSet<Attendance> Attendances { get; set; }
-        public virtual DbSet<AbsenceType> AbsenceTypes { get; set; }
         public virtual DbSet<AbsenceReason> AbsenceReasons { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Broadcast> Broadcasts { get; set; }

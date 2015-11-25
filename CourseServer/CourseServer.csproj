@@ -66,6 +66,7 @@
     <Compile Include="Contract\ICacheDriver.cs" />
     <Compile Include="Contract\IDispatcher.cs" />
     <Compile Include="Contract\IRouteBuilder.cs" />
+    <Compile Include="Controllers\AbsenceController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -110,7 +111,6 @@
     <Compile Include="Model\AbsenceReason.cs" />
     <Compile Include="Model\Attendance.cs" />
     <Compile Include="Model\Grade.cs" />
-    <Compile Include="Model\AbsenceType.cs" />
     <Compile Include="Model\Join.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\Dispatch.cs" />
@@ -123,6 +123,8 @@
     <Compile Include="Model\RolePermission.cs" />
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Model\Student.cs" />
+    <Compile Include="Repositories\AbsenceRepository.cs" />
+    <Compile Include="Repositories\AttendanceRepository.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\DispatchRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -133,11 +135,13 @@
     <Compile Include="Utils\Guard.cs" />
     <Compile Include="Utils\PlatformCompact.cs" />
     <Compile Include="Utils\TextUtils.cs" />
+    <Compile Include="Views\AbsenceView.cs" />
     <Compile Include="Views\CourseView.cs" />
     <Compile Include="Views\DispatchView.cs" />
     <Compile Include="Views\GenericView.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\RegisterView.cs" />
+    <Compile Include="Views\ResultSetView.cs" />
     <Compile Include="Views\UserView.cs" />
     <Compile Include="Views\View.cs" />
   </ItemGroup>
