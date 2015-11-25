@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="CourseStudent.AttendanceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:local="clr-namespace:CourseStudent"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <DataGrid Background="#FFF" Margin="0 8 0 0" ItemsSource="{Binding AttendanceList, 
+                     UpdateSourceTrigger=PropertyChanged}"
+                      CanUserSortColumns="True" CanUserReorderColumns="False" CanUserAddRows="False" 
+                      CanUserDeleteRows="False" AutoGenerateColumns="False"
+                      wpf:DataGridAssist.CellPadding="13 8 8 8" wpf:DataGridAssist.ColumnHeaderPadding="8">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding CourseName}" IsReadOnly="True"
+                                            Header="课程名称" />
+                <DataGridTextColumn Binding="{Binding Type}" IsReadOnly="True"
+                                            Header="考勤详情" />
+                <DataGridTextColumn IsReadOnly="True" Header="考勤时间" Binding="{Binding CreateAt}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
