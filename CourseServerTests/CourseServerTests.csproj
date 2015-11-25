@@ -81,6 +81,7 @@
     <Compile Include="Model\ModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AbsenceRepostiroyTests.cs" />
+    <Compile Include="Repositories\AttendanceRepositoryTests.cs" />
     <Compile Include="Repositories\CourseRepositoryTests.cs" />
     <Compile Include="Repositories\DispatchRepositoryTests.cs" />
     <Compile Include="Repositories\UserRepositoryTests.cs" />

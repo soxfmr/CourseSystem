@@ -25,8 +25,9 @@ namespace CourseServer.Repositories
                     foreach (var absence in student.Absences)
                     {
                         info = new Dictionary<string, object>();
-                        info.Add("CourseName", absence.Dispatch.Course.Name);
                         info.Add("Type", absence.Type);
+                        info.Add("CourseName", absence.Dispatch.Course.Name);
+                        info.Add("CreateAt", absence.CreatedAt);
 
                         keeper.Add(info);
                     }

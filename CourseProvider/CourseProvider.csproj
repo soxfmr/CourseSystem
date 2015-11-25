@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CourseProviderContract.cs" />
     <Compile Include="Domain\ObservableObject.cs" />
+    <Compile Include="Events\AttendanceEventArgs.cs" />
     <Compile Include="Events\AbsenceEventArgs.cs" />
     <Compile Include="Events\AvailableCourseEventArgs.cs" />
     <Compile Include="Events\BaseEventArgs.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Events\ProfileEventArgs.cs" />
     <Compile Include="Events\ProviderLoadedEvent.cs" />
     <Compile Include="Models\Absence.cs" />
+    <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\DispatchCourse.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="ProviderBridge.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="ProviderParser.cs" />
     <Compile Include="ProviderSettings.cs" />
     <Compile Include="Providers\AbsenceProvider.cs" />
+    <Compile Include="Providers\AttendanceProvider.cs" />
     <Compile Include="Providers\DispatchCourseProvider.cs" />
     <Compile Include="Providers\LoginProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
