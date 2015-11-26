@@ -7,9 +7,17 @@
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:local="clr-namespace:CourseStudent"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             Name="_this">
     <Grid>
-        <DataGrid Background="#FFF" Margin="0 8 0 0" ItemsSource="{Binding AttendanceList, 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <local:Toolbar Title="课堂考勤" PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
+
+        <DataGrid Grid.Row="1" Background="#FFF" Margin="0 8 0 0" ItemsSource="{Binding AttendanceList, 
                      UpdateSourceTrigger=PropertyChanged}"
                       CanUserSortColumns="True" CanUserReorderColumns="False" CanUserAddRows="False" 
                       CanUserDeleteRows="False" AutoGenerateColumns="False"

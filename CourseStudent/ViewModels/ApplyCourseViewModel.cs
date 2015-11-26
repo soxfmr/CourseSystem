@@ -154,6 +154,14 @@ namespace CourseStudent.ViewModels
             }
         }
 
+        public ActionCommand RefreshCommand
+        {
+            get
+            {
+                return new ActionCommand(p => GetAvailableCourse());
+            }
+        }
+
         #endregion
 
     }

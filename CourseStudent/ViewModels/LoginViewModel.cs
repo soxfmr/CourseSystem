@@ -26,6 +26,8 @@ namespace CourseStudent.ViewModels
 
         public ActionCommand ShowMainWindowCommand { get; set; }
 
+        public ActionCommand ShowRegisterWindowCommand { get; set; }
+
         public LoginViewModel()
         {
             lProvider = new LoginProvider();

@@ -11,6 +11,8 @@ namespace CourseServer.Middlewares
     {
         protected List<string> methodFilter = null;
 
+        public int Priority { get; set; }
+
         public Middleware()
         {
             methodFilter = new List<string>();

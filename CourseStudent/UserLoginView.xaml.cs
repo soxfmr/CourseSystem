@@ -13,11 +13,24 @@ namespace CourseStudent
         public UserLoginView()
         {
             InitializeComponent();
+            
+            var viewModel = new LoginViewModel();
+            viewModel.ShowMainWindowCommand = new ActionCommand(ShowMainWindow, Dispatcher);
+            viewModel.ShowRegisterWindowCommand = new ActionCommand(p => ShowRegisterWindow(), Dispatcher);
 
-            (DataContext as LoginViewModel).ShowMainWindowCommand =
-                new ActionCommand(ShowMainWindow, Dispatcher);
+            DataContext = viewModel;
 
-            DialogHelper.SetupInvoke(this, "RootDialog");
+            this.Loaded += UserLoginView_Loaded;
+        }
+
+        /// <summary>
+        /// Switch the window instance of the dialog helper class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UserLoginView_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            DialogHelper.SetupInvoke(this, "LoginRootDialog");
         }
 
         /// <summary>
@@ -30,6 +43,14 @@ namespace CourseStudent
 
             MainWindow mainWin = new MainWindow(sessionId);
             mainWin.Show();
+
+            Close();
+        }
+
+        public void ShowRegisterWindow()
+        {
+            RegisterView register = new RegisterView();
+            register.Show();
 
             Close();
         }

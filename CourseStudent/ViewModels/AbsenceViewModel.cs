@@ -217,6 +217,19 @@ namespace CourseStudent.ViewModels
                 });
             }
         }
+
+        public ActionCommand RefreshCommand
+        {
+            get
+            {
+                return new ActionCommand(p =>
+                {
+                    GetAllAbsence();
+                    GetAllChangeableAbsence();
+                });
+            }
+        }
+
         #endregion
 
 

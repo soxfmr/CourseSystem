@@ -15,8 +15,6 @@ namespace CourseStudent
         public MainWindow(string sessionId)
         {
             InitializeComponent();
-            
-            DialogHelper.SetupInvoke(this, "RootDialog");
 
             MainWindowViewModel mainModel = new MainWindowViewModel(sessionId);
             DataContext = mainModel;
@@ -41,6 +39,13 @@ namespace CourseStudent
 
             // Default view
             ViewContainer.Content = mainModel.ChildViewList["profile"].View;
+
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            DialogHelper.SetupInvoke(this, "MainRootDialog");
         }
 
         public void SwithView(object o)

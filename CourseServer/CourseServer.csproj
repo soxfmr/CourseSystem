@@ -58,7 +58,6 @@
     <None Include="App.manifest">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +100,7 @@
     <Compile Include="Framework\Validator.cs" />
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="Helper\Auth.cs" />
+    <Compile Include="Middlewares\AccessControlMiddleware.cs" />
     <Compile Include="Middlewares\AuthMiddleware.cs" />
     <Compile Include="Middlewares\Middleware.cs" />
     <Compile Include="Model\SystemLog.cs" />

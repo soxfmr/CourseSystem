@@ -8,7 +8,8 @@
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="582" d:DesignWidth="708"
-             Style="{ StaticResource VisualComponent }" Padding="0">
+             Style="{ StaticResource VisualComponent }" Padding="0"
+             Name="_this">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,14 +19,8 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <wpf:ColorZone wpf:ShadowAssist.ShadowDepth="Depth0"
-                               Mode="PrimaryMid" DockPanel.Dock="Top">
-            <DockPanel Height="56" Margin="16 0 16 0">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center">请假条</TextBlock>
-                </StackPanel>
-            </DockPanel>
-        </wpf:ColorZone>
+        <local:Toolbar Title="请假条" PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
+        
         <Grid Margin="16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

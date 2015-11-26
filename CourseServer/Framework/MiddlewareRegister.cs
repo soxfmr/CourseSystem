@@ -71,8 +71,23 @@ namespace CourseServer.Framework
         /// <param name="middleware">A instance of the middleware</param>
         public static void Add(string alias, Middleware middleware)
         {
+            Add(alias, middleware, 0);
+        }
+
+        /// <summary>
+        /// Append a middleware instance to the global container
+        /// </summary>
+        /// <param name="alias">The alias of the instance that used to reference a middleware instance
+        /// when register a middleware in the somewhere.
+        /// </param>
+        /// <param name="middleware">A instance of the middleware</param>
+        /// <param name="priority">The highest priority of middleware will be handle first</param>
+        public static void Add(string alias, Middleware middleware, int priority)
+        {
             if (TextUtils.isEmpty(alias) || middleware == null)
                 return;
+
+            middleware.Priority = priority;
 
             if (middlewarePair.ContainsKey(alias))
             {
@@ -82,6 +97,10 @@ namespace CourseServer.Framework
             {
                 middlewarePair.Add(alias, middleware);
             }
+
+            // Resort the middleware list
+            middlewarePair = middlewarePair.OrderByDescending(p => p.Value.Priority)
+                .ToDictionary(p => p.Key, p => p.Value);
         }
 
         /// <summary>

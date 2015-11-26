@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterScreen"
         Style="{ StaticResource MaterialDesignWindowDefault }">
 
-    <wpf:DialogHost Identifier="RootDialog">
+    <wpf:DialogHost Identifier="MainRootDialog">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -29,10 +29,16 @@
                     <DockPanel Height="140" >
                         <Grid DockPanel.Dock="Top" HorizontalAlignment="Left"
                         Width="90" Height="90">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
                             <Grid.Clip>
                                 <EllipseGeometry Center="45,45" RadiusX="40" RadiusY="40" />
                             </Grid.Clip>
-                            <Image Source="Resources\avatar.jpg" Stretch="UniformToFill" 
+                            <Image Grid.Column="0" Source="Resources\avatar.jpg" Stretch="UniformToFill" 
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <Image Grid.Column="0" Source="{Binding UserProfile.Avatar}" Stretch="UniformToFill" 
                                RenderOptions.BitmapScalingMode="HighQuality"
                                VerticalAlignment="Center" HorizontalAlignment="Center" />
                         </Grid>

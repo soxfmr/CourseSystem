@@ -14,6 +14,8 @@ namespace CourseProvider.Events
         public int Status;
 
         public string Payload;
+
+        public int ErrorCode;
         #endregion
 
         #region Common Local Variant
@@ -30,6 +32,8 @@ namespace CourseProvider.Events
 
             IsSuccess = e.IsSuccess;
             ErrorMessage = e.ErrorMessage;
+
+            ErrorCode = e.ErrorCode;
         }
     }
 }

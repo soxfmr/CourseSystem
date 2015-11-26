@@ -7,44 +7,55 @@
              xmlns:local="clr-namespace:CourseStudent"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600"
-             Style="{ StaticResource VisualComponent }">
+             Style="{ StaticResource VisualComponent }" Padding="0"
+             Name="_this">
 
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
-            </ResourceDictionary.MergedDictionaries> 
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="56" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel>
-            <TextBlock Style="{ StaticResource VisualTextBlock }">基础信息</TextBlock>
-            <TextBox wpf:TextFieldAssist.Hint="头像链接" Text="{Binding UserProfile.Avatar}" Style="{ StaticResource VisualTextBox}"/>
-            <TextBox wpf:TextFieldAssist.Hint="用户名"  Text="{Binding UserProfile.Name}" Style="{ StaticResource VisualTextBox}" />
-            <TextBox wpf:TextFieldAssist.Hint="联系电话" Text="{Binding UserProfile.Cellphone}" Style="{ StaticResource VisualTextBox}"/>
-        </StackPanel>
+        <local:Toolbar Title="个人信息"
+                       PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
 
-        <StackPanel Grid.Row="1" Margin="0 16 0 0">
-            <TextBlock Style="{ StaticResource VisualTextBlock }">密码设置</TextBlock>
-            <PasswordBox x:Name="PasswordBoxNew" wpf:TextFieldAssist.Hint="新密码，不修改请留空" 
-                          Style="{ StaticResource VisualPasswordBox}"/>
-            <PasswordBox x:Name="PasswordBoxConfirm" wpf:TextFieldAssist.Hint="确认新密码" 
-                          Style="{ StaticResource VisualPasswordBox}"/>
-            <PasswordBox x:Name="PasswordBoxOrigin" wpf:TextFieldAssist.Hint="当前密码，必须"
-                          Style="{ StaticResource VisualPasswordBox}"/>
-        </StackPanel>
+        <Grid Grid.Row="1" Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="2" Margin="0 16 0 0">
-            <Button HorizontalAlignment="Left" Style="{ StaticResource VisualButton }" 
+            <StackPanel>
+                <TextBlock Style="{ StaticResource VisualTextBlock }">基础信息</TextBlock>
+                <TextBox wpf:TextFieldAssist.Hint="头像链接" Text="{Binding UserProfile.Avatar}" Style="{ StaticResource VisualTextBox}"/>
+                <TextBox wpf:TextFieldAssist.Hint="用户名"  Text="{Binding UserProfile.Name}" Style="{ StaticResource VisualTextBox}" />
+                <TextBox wpf:TextFieldAssist.Hint="联系电话" Text="{Binding UserProfile.Cellphone}" Style="{ StaticResource VisualTextBox}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Margin="0 16 0 0">
+                <TextBlock Style="{ StaticResource VisualTextBlock }">密码设置</TextBlock>
+                <PasswordBox x:Name="PasswordBoxNew" wpf:TextFieldAssist.Hint="新密码，不修改请留空" 
+                          Style="{ StaticResource VisualPasswordBox}"/>
+                <PasswordBox x:Name="PasswordBoxConfirm" wpf:TextFieldAssist.Hint="确认新密码" 
+                          Style="{ StaticResource VisualPasswordBox}"/>
+                <PasswordBox x:Name="PasswordBoxOrigin" wpf:TextFieldAssist.Hint="当前密码，必须"
+                          Style="{ StaticResource VisualPasswordBox}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Margin="0 16 0 0">
+                <Button HorizontalAlignment="Left" Style="{ StaticResource VisualButton }" 
                     Command="{Binding UpdateProfileCommand}">更新</Button>
-        </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

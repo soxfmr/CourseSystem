@@ -155,6 +155,14 @@ namespace CourseStudent.ViewModels
             }
         }
 
+        public ActionCommand RefreshCommand
+        {
+            get
+            {
+                return new ActionCommand(p => GetUserCourse());
+            }
+        }
+
         #endregion
 
         public void DispatchLoadedEvent(object sender, DispatchCourseEventArgs e)

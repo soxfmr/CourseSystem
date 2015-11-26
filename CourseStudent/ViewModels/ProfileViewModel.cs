@@ -53,6 +53,9 @@ namespace CourseStudent.ViewModels
         /// </summary>
         public ActionCommand UpdateProfileCommand { get { return new ActionCommand(e => UpdateProfile()); } }
 
+
+        public ActionCommand RefreshCommand { get { return new ActionCommand(e => GetUserProfile()); } }
+
         /// <summary>
         /// Reset the password box fields after update the profile
         /// </summary>

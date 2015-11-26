@@ -69,6 +69,11 @@ namespace CourseStudent.ViewModels
 
         public override void Notify()
         {
+            GetUserCourse();
+        }
+
+        public void GetUserCourse()
+        {
             dispatchProvider.GetUserCourse(SessionId);
         }
 
@@ -118,14 +123,19 @@ namespace CourseStudent.ViewModels
 
         #region EventCommand
 
+        public ActionCommand RefreshCommand
+        {
+            get
+            {
+                return new ActionCommand(p => GetUserCourse());
+            }
+        }
+
         public ActionCommand CreateAbsenceCommand
         {
             get
             {
-                return new ActionCommand(p =>
-                {
-                    CreateAbsence(p == null ? -1 : (int) p);
-                });
+                return new ActionCommand(p => CreateAbsence(p == null ? -1 : (int) p));
             }
         }
 
@@ -137,10 +147,7 @@ namespace CourseStudent.ViewModels
         {
             get
             {
-                return new ActionCommand(p =>
-                {
-                    Container.Show(Parent.View);
-                });
+                return new ActionCommand(p => Container.Show(Parent.View));
             }
         }
 

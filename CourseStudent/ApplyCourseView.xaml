@@ -8,31 +8,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600"
              Style="{ StaticResource VisualComponent }" Padding="0"
-             Name="LayoutRoot">
+             Name="_this">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="56" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <wpf:ColorZone Grid.Row="0" wpf:ShadowAssist.ShadowDepth="Depth0"
-                               Mode="PrimaryMid" DockPanel.Dock="Top">
-            <DockPanel Height="56" Margin="16 0 16 0">
-                <Button DockPanel.Dock="Left" HorizontalAlignment="Right" Margin="0 0 8 0"
-                    Style="{DynamicResource MaterialDesignToolForegroundButton}"
-                    Command="{Binding BackToPreviousCommand}"
-                            wpf:RippleAssist.IsCentered="True">
-                    <Viewbox Width="16" Height="16">
-                        <Canvas Width="24" Height="24">
-                            <Path Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" 
-                                  Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" />
-                        </Canvas>
-                    </Viewbox>
-                </Button>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center">订阅新课程</TextBlock>
-                </StackPanel>                
-            </DockPanel>
-        </wpf:ColorZone>
+        <local:Toolbar Grid.Row="0" Title="订阅新课程" PositionAdjustment="1"                       
+                       RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}"
+                       BackCommand="{Binding DataContext.BackToPreviousCommand, ElementName=_this}" />
+        
         <ListBox Grid.Row="1" Margin="16" ItemsSource="{Binding MajorDispatchList}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -62,7 +47,7 @@
                                             </DockPanel>
                                         </wpf:ColorZone>
                                         <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Column="1" Margin="0 -20 16 0" HorizontalAlignment="Right"
-                                                Command="{Binding DataContext.ApplyCourseCommand, ElementName=LayoutRoot}" CommandParameter="{Binding Id}">
+                                                Command="{Binding DataContext.ApplyCourseCommand, ElementName=_this}" CommandParameter="{Binding Id}">
                                             <Viewbox Width="24" Height="24">
                                                 <Canvas Width="24" Height="24">
                                                     <Path Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" Fill="White" />

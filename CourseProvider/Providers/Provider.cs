@@ -28,6 +28,8 @@ namespace CourseProvider.Providers
             e.IsSuccess = Parser.IsSuccess;
             // Try to extract the error messages
             e.ErrorMessage = Parser.GetErrorMessage();
+
+            e.ErrorCode = Parser.ErrorCode;
         }
     }
 }

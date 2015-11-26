@@ -1,4 +1,5 @@
-﻿using CourseServer.Controllers;
+﻿using CourseProvider;
+using CourseServer.Controllers;
 using CourseServer.Framework;
 using CourseServer.Middlewares;
 using System;
@@ -18,7 +19,9 @@ namespace CourseServer
                 DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 
                     config.DatabaseInfo.Timeout);
 
-                MiddlewareRegister.Add("auth", new AuthMiddleware());
+                MiddlewareRegister.Add("auth", new AuthMiddleware(), priority : 9);
+                MiddlewareRegister.Add("studentACL", new AccessControlMiddleware(CourseProviderContract.MODE_STUDENT));
+                MiddlewareRegister.Add("teacherACL", new AccessControlMiddleware(CourseProviderContract.MODE_TEACHER));
 
                 MiddlewareRegister.Register(typeof(CourseController), "auth", "Index");
                 MiddlewareRegister.Register(typeof(DispatchController), "auth", "Index");
@@ -28,6 +31,11 @@ namespace CourseServer
                 MiddlewareRegister.Register(typeof(AbsenceController), "auth", "Index", "AllChangeableAbsence",
                     "Store", "Update", "Destroy");
                 MiddlewareRegister.Register(typeof(AttendanceController), "auth", "Index");
+                // Access Control List
+                MiddlewareRegister.Register(typeof(AbsenceController), "studentACL", "Index", "AllChangeableAbsence",
+                    "Store", "Update", "Destroy");
+                MiddlewareRegister.Register(typeof(AttendanceController), "studentACL", "Index");
+                MiddlewareRegister.Register(typeof(AbsenceController), "studentACL", "Index", "AllChangeableAbsence", "Store", "Update", "Destroy");
 
                 Route.Add("/login", "AuthController@OnLogin", "email,pass,mode");
                 Route.Add("/register", "AuthController@OnRegister", "email,user,pass");

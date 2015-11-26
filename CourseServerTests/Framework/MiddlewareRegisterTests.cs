@@ -58,5 +58,35 @@ namespace CourseServer.Framework.Tests
 
             Assert.AreEqual("auth", MiddlewareRegister.GetAlias(auth));
         }
+
+        [TestMethod()]
+        public void AddTest1()
+        {
+            AuthMiddleware auth = new AuthMiddleware();
+            AuthMiddleware auth2 = new AuthMiddleware();
+            MiddlewareRegister.Add("a", auth);
+            MiddlewareRegister.Add("b", auth2, 233);
+        }
+
+        [TestMethod()]
+        public void GetAllReferenceMiddlewareTest1()
+        {
+            Object obj = new object();
+            MiddlewareRegister.Add("auth", new AuthMiddleware());
+            MiddlewareRegister.Add("boom", new AuthMiddleware());
+
+            MiddlewareRegister.Register(typeof(Object), "auth", "test1");
+            MiddlewareRegister.Register(typeof(Object), "boom", "test1");
+
+            List<Middleware> middlewares = MiddlewareRegister.GetAllReferenceMiddleware(typeof(Object), "test1");
+
+            Assert.AreNotEqual("boom", MiddlewareRegister.GetAlias(middlewares[0]));
+
+            /*Assert.AreEqual(1, middlewares.Count);
+
+            Assert.AreEqual(true, middlewares[0].isProtected(obj.GetType().FullName, "test1"));
+
+            Assert.AreEqual(typeof(AuthMiddleware), middlewares[0].GetType());*/
+        }
     }
 }
