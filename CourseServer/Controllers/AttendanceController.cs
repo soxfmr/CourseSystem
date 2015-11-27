@@ -11,33 +11,58 @@ namespace CourseServer.Controllers
 {
     class AttendanceController : Controller
     {
+        private ResultSetView resultSetView;
+        private AttendanceRepository attendanceRepo;
+
+        public AttendanceController()
+        {
+            resultSetView = new ResultSetView();
+            attendanceRepo = new AttendanceRepository();
+        }
+
         /// <summary>
         /// Get all of attendances status of the user
         /// </summary>
         /// <returns></returns>
         public string Index()
         {
-            ResultSetView view = new ResultSetView();
-            AttendanceRepository repo = new AttendanceRepository();
-
-            var result = repo.GetAll(Auth.User().Id);
-
-            return view.Show(result);           
+            var result = attendanceRepo.GetAll(Auth.User().Id);
+            return resultSetView.Show(result);           
         }
 
-        public string Store()
+        public string CourseAttendance()
         {
-            return "Store!";
+            var result = attendanceRepo.GetAllCourseAttendance(Auth.User().Id);
+            return resultSetView.Show(result);
         }
 
-        public string Destory()
+        public string Store(int dispatchId, int population)
         {
-            return "Destory!";
+            Validator validator = new Validator();
+            // Validate the user input here.
+            if (! validator.Make(new string[] { dispatchId + "", population + "" },
+                new string[] { "required", "required|min:0" },
+                new string[] { "dispatchId", "population" }))
+            {
+                return resultSetView.Error(validator.GetDetail());
+            }
+
+            bool ret = attendanceRepo.Create(dispatchId, population, Auth.User().Id);
+            return ret ? resultSetView.Success() : resultSetView.Error();
         }
 
-        public string Update()
+        public string Destroy(int id)
         {
-            return "Updated!";
+            Validator validator = new Validator();
+            // Validate the user input here.
+            // Validate the user input here.
+            if (!validator.MatchRule(id + "", "required", "id"))
+            {
+                return resultSetView.Error(validator.GetDetail());
+            }
+
+            bool ret = attendanceRepo.Destroy(id, Auth.User().Id);
+            return ret ? resultSetView.Success() : resultSetView.Error();
         }
     }
 }

@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CourseStudent
+namespace CourseTeacher
 {
     /// <summary>
-    /// Feedback.xaml 的交互逻辑
+    /// About.xaml 的交互逻辑
     /// </summary>
-    public partial class FeedbackView : UserControl
+    public partial class AboutView : UserControl
     {
-        public FeedbackView()
+        public AboutView()
         {
             InitializeComponent();
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            System.Diagnostics.Process.Start(e.Uri.ToString());
         }
     }
 }

@@ -24,24 +24,29 @@ namespace CourseServer
                 MiddlewareRegister.Add("teacherACL", new AccessControlMiddleware(CourseProviderContract.MODE_TEACHER));
 
                 MiddlewareRegister.Register(typeof(CourseController), "auth", "Index");
-                MiddlewareRegister.Register(typeof(DispatchController), "auth", "Index");
+                MiddlewareRegister.Register(typeof(DispatchController), "auth", "Index", "DispatchStudent");
                 MiddlewareRegister.Register(typeof(AuthController), "auth", "OnLogout");
                 MiddlewareRegister.Register(typeof(UserController), "auth", "Profile", "Update", 
                     "CreateDispatch", "ShowDispatch", "RemoveDispatch");
                 MiddlewareRegister.Register(typeof(AbsenceController), "auth", "Index", "AllChangeableAbsence",
                     "Store", "Update", "Destroy");
                 MiddlewareRegister.Register(typeof(AttendanceController), "auth", "Index");
-                // Access Control List
-                MiddlewareRegister.Register(typeof(AbsenceController), "studentACL", "Index", "AllChangeableAbsence",
-                    "Store", "Update", "Destroy");
-                MiddlewareRegister.Register(typeof(AttendanceController), "studentACL", "Index");
+                // Access Control List for student
+                MiddlewareRegister.Register(typeof(UserController), "studentACL", "CreateDispatch", "RemoveDispatch");
                 MiddlewareRegister.Register(typeof(AbsenceController), "studentACL", "Index", "AllChangeableAbsence", "Store", "Update", "Destroy");
+                MiddlewareRegister.Register(typeof(AttendanceController), "studentACL", "Index");
+                // Access Control List for teacher
+                MiddlewareRegister.Register(typeof(AbsenceController), "teacherACL", "GetAuditableAbsence", "AuditAbsence");
+                MiddlewareRegister.Register(typeof(AttendanceController), "teacherACL", "CourseAttendance", "Store", "Destroy");
+                MiddlewareRegister.Register(typeof(DispatchController), "teacherACL", "DispatchStudent");
 
                 Route.Add("/login", "AuthController@OnLogin", "email,pass,mode");
                 Route.Add("/register", "AuthController@OnRegister", "email,user,pass");
                 Route.Add("/logout", "AuthController@OnLogout");
 
                 Route.Add("/dispatch", "DispatchController@Index");
+
+                Route.Add("/dispatch/student", "DispatchController@DispatchStudent");
 
                 Route.Add("/user/attendance", "AttendanceController@Index");
 
@@ -57,6 +62,13 @@ namespace CourseServer
                 Route.Add("/user/absence/store", "AbsenceController@Store", "reason,dispatchId");
                 Route.Add("/user/absence/update", "AbsenceController@Update", "reason,id");
                 Route.Add("/user/absence/destroy", "AbsenceController@Destroy", "id");
+                // Absence manager for teacher
+                Route.Add("/teacher/absence", "AbsenceController@GetAuditableAbsence");
+                Route.Add("/teacher/absence/audit", "AbsenceController@AuditAbsence", "id");
+                // Attendance manager for teacher
+                Route.Add("/teacher/attendance", "AttendanceController@CourseAttendance");
+                Route.Add("/teacher/attendance/create", "AttendanceController@Store", "dispatchId,population");
+                Route.Add("/teacher/attendance/destroy", "AttendanceController@Destroy", "id");
             });
 
             Console.CancelKeyPress += (sender, e) =>

@@ -18,12 +18,15 @@ namespace CourseServer.Framework
 
         public List<string> ErrorDetailList;
 
+        private List<string> SingleArugmentErrorList;
+
         private string[] Arguments;
         private string[] FieldNames;
 
         public Validator()
         {
             ErrorDetailList = new List<string>();
+            SingleArugmentErrorList = new List<string>();
         }
 
         public bool Make(string[] args, string[] patterns, string[] fields)
@@ -41,8 +44,7 @@ namespace CourseServer.Framework
             // Reference to the arguments and fields name
             Arguments = args;
             FieldNames = fields;
-
-            string[] patternList;
+            
             for (int i = 0, len = args.Length; i < len; i++)
             {
                 // Default to passed
@@ -51,13 +53,9 @@ namespace CourseServer.Framework
                     continue;
                 }
 
-                patternList = patterns[i].Split('|');
-                foreach (var item in patternList)
+                if (! MatchRule(args[i], patterns[i], fields[i]))
                 {
-                    if (!MatchRule(args[i], patterns[i], fields[i]))
-                    {
-                        ErrorDetailList.Add(ErrorDetail);
-                    }
+                    ErrorDetailList.AddRange(SingleArugmentErrorList);
                 }
             }
 
@@ -69,6 +67,22 @@ namespace CourseServer.Framework
             if (TextUtils.isEmpty(rule))
                 return false;
 
+            SingleArugmentErrorList.Clear();
+
+            string[] patternList = rule.Split('|');
+            foreach (var item in patternList)
+            {
+                if (! matchRule(arg0, item, fieldName))
+                {
+                    SingleArugmentErrorList.Add(ErrorDetail);
+                }
+            }
+
+            return SingleArugmentErrorList.Count == 0;
+        }
+
+        private bool matchRule(string arg0, string rule, string fieldName)
+        {
             try
             {
                 int value = 0;
@@ -99,14 +113,14 @@ namespace CourseServer.Framework
                     value = int.Parse(rule.Split(':')[1]);
                     ErrorDetail = string.Format("{0}.The value should less than {1}", fieldName, value);
 
-                    return int.Parse(rule) <= value;
+                    return int.Parse(arg0) <= value;
                 }
                 else if (Regex.IsMatch(rule, @"min:[0-9]+"))
                 {
                     value = int.Parse(rule.Split(':')[1]);
                     ErrorDetail = string.Format("{0}.The value should great than {1}", fieldName, value);
 
-                    return int.Parse(rule) >= value;
+                    return int.Parse(arg0) >= value;
                 }
                 else if (Regex.IsMatch(rule, @"email"))
                 {

@@ -40,7 +40,10 @@ namespace CourseServer.Framework.Tests
         [TestMethod()]
         public void GetDetailTest()
         {
+            Validator validator = new Validator();
 
+            Assert.IsTrue(
+            validator.MatchRule(5 + "", "required|max:3", "number"));
         }
 
         [TestMethod()]

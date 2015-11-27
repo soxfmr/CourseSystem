@@ -66,7 +66,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\CourseSystem\packages\MaterialDesignThemes.1.2.1-ci353\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <HintPath>..\packages\MaterialDesignThemes.1.2.1-ci368\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -107,9 +107,6 @@
     <Compile Include="Domain\IViewContainer.cs" />
     <Compile Include="Helper\DialogHelper.cs" />
     <Compile Include="Models\ViewModelRelationship.cs" />
-    <Compile Include="NoticeDialog.xaml.cs">
-      <DependentUpon>NoticeDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ProgressDialogView.xaml.cs">
       <DependentUpon>ProgressDialogView.xaml</DependentUpon>
     </Compile>
@@ -160,14 +157,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FeedbackView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NoticeDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -206,9 +195,6 @@
       <DependentUpon>AttendanceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Domain\ObservableObject.cs" />
-    <Compile Include="FeedbackView.xaml.cs">
-      <DependentUpon>FeedbackView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>

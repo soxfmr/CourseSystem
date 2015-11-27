@@ -1,4 +1,5 @@
 ﻿using CourseServer.Views;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,10 @@ namespace CourseServer.Views
     {
         public override string Show(List<object> recordSet)
         {
-            throw new NotImplementedException();
+            if (Empty(recordSet)) return Success();
+
+            JToken token = JToken.FromObject(recordSet);
+            return Success(token);
         }
     }
 }

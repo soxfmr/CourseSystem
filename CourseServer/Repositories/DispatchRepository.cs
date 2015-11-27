@@ -65,6 +65,45 @@ namespace CourseServer.Repositories
             return null;
         }
 
+        public Dictionary<string, object> GetDispatchStudent(int userId)
+        {
+            using (var context = GetDbContext())
+            {
+                DbSet<Dispatch> dispatches = context.Set<Dispatch>();
+                ChainLoad(dispatches, "Students");
+
+                var result = dispatches.Where(d => d.TeacherId == userId);
+                if (result != null)
+                {
+                    var Ret = new Dictionary<string, object>();
+
+                    List<Dictionary<string, object>> container = new List<Dictionary<string, object>>();
+                    Dictionary <string, object> keeper = null;
+
+                    var data = result.ToList();
+
+                    foreach (var dispatch in data)
+                    {
+                        foreach (var student in dispatch.Students)
+                        {
+                            keeper = new Dictionary<string, object>();
+
+                            keeper.Add("StudentId", student.Id);
+                            keeper.Add("StudentName", student.Name);
+
+                            container.Add(keeper);
+                        }
+
+                        Ret.Add(dispatch.Course.Name, container);
+                    }
+
+                    return Ret;
+                }
+            }
+
+            return null;
+        }
+
         public bool JoinCourse(int userId, int courseId)
         {
             using (var context = GetDbContext())

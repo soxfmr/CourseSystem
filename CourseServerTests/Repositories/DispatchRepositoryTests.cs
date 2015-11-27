@@ -83,5 +83,25 @@ namespace CourseServer.Repositories.Tests
 
             Assert.AreEqual(true, dp.RemoveCourseList(1, new int[] { 1 }));
         }
+
+        [TestMethod()]
+        public void GetDispatchListTest3()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            DispatchRepository dp = new DispatchRepository();
+
+            Assert.AreEqual(1, dp.GetDispatchList(1, 1).Count);
+        }
+
+        [TestMethod()]
+        public void GetDispatchStudentTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            DispatchRepository dp = new DispatchRepository();
+
+            Assert.AreEqual(1, dp.GetDispatchStudent(2, 1).Count);
+        }
     }
 }

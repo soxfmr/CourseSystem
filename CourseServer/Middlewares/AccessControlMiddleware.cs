@@ -15,6 +15,8 @@ namespace CourseServer.Middlewares
     {
         private int mode = 0;
 
+        private Auth Auth;
+
         /// <summary>
         /// User Access Control
         /// </summary>
@@ -22,6 +24,8 @@ namespace CourseServer.Middlewares
         public AccessControlMiddleware(int mode)
         {
             this.mode = mode;
+
+            Auth = new Auth();
         }
 
         public override bool Handle(RouteDispatchInfo dispatchInfo, ref string message)
@@ -30,7 +34,7 @@ namespace CourseServer.Middlewares
 
             if (! TextUtils.isEmpty(sessionId))
             {
-                var user = new Auth().User();
+                var user = Auth.User(sessionId);
                 if (user != null && user.Mode == mode)
                 {
                     return true;

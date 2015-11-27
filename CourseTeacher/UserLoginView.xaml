@@ -1,0 +1,42 @@
+﻿<Controls:MetroWindow  x:Class="CourseTeacher.UserLoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:CourseTeacher"
+        xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+        mc:Ignorable="d"
+        Height="477.343" Width="361.459"
+        Style="{ StaticResource MaterialDesignWindowDefault }"
+        WindowStartupLocation="CenterScreen">
+
+    <wpf:DialogHost Identifier="LoginRootDialog">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--<Controls:WindowCommands HorizontalAlignment="Left" Height="100" Margin="698,171,-281,0" VerticalAlignment="Top" Width="100"/>-->
+            <DockPanel>
+                <wpf:ColorZone Padding="16" wpf:ShadowAssist.ShadowDepth="Depth1"
+                               Mode="PrimaryMid" DockPanel.Dock="Top">
+                    <DockPanel Margin="16 0" Height="120" LastChildFill="False">
+                        <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="16" >Sign in to Course System</TextBlock>
+                    </DockPanel>
+                </wpf:ColorZone>
+            </DockPanel>
+
+            <StackPanel Grid.Row="1" Margin="32">
+                <TextBox Name="UserNameTextBox" wpf:TextFieldAssist.Hint="邮箱" Margin="0 16 0 16" Text="{Binding Username}" />
+                <PasswordBox Name="UserPasswordBox" wpf:TextFieldAssist.Hint="密码" Margin="0 16 0 16"
+                         Style="{StaticResource MaterialDesignPasswordBox}"/>
+                <DockPanel>
+                    <Button HorizontalAlignment="Right" Height="32" Margin="0 16 0 16" Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=UserPasswordBox}">登陆</Button>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+    </wpf:DialogHost>
+</Controls:MetroWindow>

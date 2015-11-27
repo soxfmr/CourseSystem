@@ -55,7 +55,7 @@ namespace CourseServer.Repositories.Tests
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
             AbsenceRepository repo = new AbsenceRepository();
-            Assert.AreEqual(true, repo.Destroy(1));
+            Assert.AreEqual(true, repo.Destroy(1, 1));
         }
 
         [TestMethod()]
@@ -65,6 +65,24 @@ namespace CourseServer.Repositories.Tests
 
             AbsenceRepository repo = new AbsenceRepository();
             var result = new AbsenceView().Show(repo.GetAllChangeableAbsence(1));
+        }
+
+        [TestMethod()]
+        public void GetAuditableAbsenceTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            AbsenceRepository repo = new AbsenceRepository();
+            Assert.AreEqual(1, repo.GetAuditableAbsence(1).Count);
+        }
+
+        [TestMethod()]
+        public void AuditAbsenceTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            AbsenceRepository repo = new AbsenceRepository();
+            Assert.AreEqual(true, repo.AuditAbsence(5, 1));
         }
     }
 }

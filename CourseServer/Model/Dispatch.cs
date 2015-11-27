@@ -40,5 +40,7 @@ namespace CourseServer.Model
 
         [JsonIgnore]
         public virtual IList<Student> Students { get; set; }
+
+        public virtual IList<AbsenceReason> AbsenceReasons { get; set; }
     }
 }

@@ -20,5 +20,38 @@ namespace CourseServer.Repositories.Tests
             AttendanceRepository repo = new AttendanceRepository();
             Assert.AreEqual(1, repo.GetAll(1).Count);
         }
+
+        [TestMethod()]
+        public void GetAllTest1()
+        {
+
+        }
+
+        [TestMethod()]
+        public void GetAllCourseAttendanceTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            AttendanceRepository repo = new AttendanceRepository();
+            Assert.AreEqual(1, repo.GetAllCourseAttendance(1).Count);
+        }
+
+        [TestMethod()]
+        public void CreateTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            AttendanceRepository repo = new AttendanceRepository();
+            Assert.AreEqual(true, repo.Create(1, 233, 1));
+        }
+
+        [TestMethod()]
+        public void DestroyTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            AttendanceRepository repo = new AttendanceRepository();
+            Assert.AreEqual(true, repo.Destroy(1, 1));
+        }
     }
 }

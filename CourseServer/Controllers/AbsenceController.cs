@@ -89,7 +89,31 @@ namespace CourseServer.Controllers
                 return absenceView.Error(validator.GetDetail());
             }
 
-            bool ret = absenceRepo.Destroy(id);
+            bool ret = absenceRepo.Destroy(id, Auth.User().Id);
+
+            return ret ? absenceView.Success() : absenceView.Error();
+        }
+
+        /// <summary>
+        /// Give all of aduitable absence for teacher
+        /// </summary>
+        /// <returns></returns>
+        public string GetAuditableAbsence()
+        {
+            var result = absenceRepo.GetAuditableAbsence(Auth.User().Id);
+
+            return absenceView.Show(result);
+        }
+
+        public string AuditAbsence(int id)
+        {
+            Validator validator = new Validator();
+            if (!validator.MatchRule(id.ToString(), "required", "reasonId"))
+            {
+                return absenceView.Error(validator.GetDetail());
+            }
+
+            bool ret = absenceRepo.AuditAbsence(id, Auth.User().Id);
 
             return ret ? absenceView.Success() : absenceView.Error();
         }

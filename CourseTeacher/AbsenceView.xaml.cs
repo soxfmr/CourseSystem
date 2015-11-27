@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CourseStudent
+namespace CourseTeacher
 {
     /// <summary>
-    /// NoticeDialog.xaml 的交互逻辑
+    /// AbsenceView.xaml 的交互逻辑
     /// </summary>
-    public partial class NoticeDialog : UserControl
+    public partial class AbsenceView : UserControl
     {
-        public NoticeDialog()
+        public AbsenceView()
         {
             InitializeComponent();
         }

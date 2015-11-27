@@ -51,6 +51,61 @@ namespace CourseServer.Repositories
             return null;
         }
 
+        public List<Dictionary<string, object>> GetAuditableAbsence(int userId)
+        {
+
+            using (var context = GetDbContext())
+            {
+                DbSet<AbsenceReason> absenceReasons = context.Set<AbsenceReason>();
+                ChainLoad(absenceReasons, "Dispatch");
+
+                var result = absenceReasons.Where(a => a.Dispatch.TeacherId == userId && a.Changeable);
+                if (result != null)
+                {
+                    var data = result.ToList();
+
+                    Dictionary<string, object> info;
+                    List<Dictionary<string, object>> keeper = new List<Dictionary<string, object>>();
+
+                    foreach (var areason in data)
+                    {
+                        info = new Dictionary<string, object>();
+                        info.Add("Id", areason.Id);
+                        info.Add("Reason", areason.Reason);
+                        info.Add("StudentName", areason.Student.Name);
+
+                        keeper.Add(info);
+                    }
+
+                    return keeper;
+                }                
+            }
+
+            return null;
+        }
+
+        public bool AuditAbsence(int reasonId, int userId)
+        {
+            bool bRet = false;
+
+            using (var context = GetDbContext())
+            {
+                DbSet<AbsenceReason> absenceReasons = context.Set<AbsenceReason>();
+                var aReason = absenceReasons.Where(a => a.Id == reasonId && 
+                    a.Dispatch.TeacherId == userId).FirstOrDefault();
+
+                if (aReason != null)
+                {
+                    aReason.Changeable = false;
+                }
+
+                context.SaveChanges();
+                bRet = true;
+            }
+
+            return bRet;
+        }
+
         public bool Create(string reason, int dispatchId, int userId)
         {
             bool bRet = false;
@@ -117,7 +172,7 @@ namespace CourseServer.Repositories
             return bRet;
         }
 
-        public bool Destroy(int reasonId)
+        public bool Destroy(int reasonId, int userId)
         {
             bool bRet = false;
 
@@ -125,7 +180,8 @@ namespace CourseServer.Repositories
             {
                 DbSet<AbsenceReason> absenceReasons = context.Set<AbsenceReason>();
                 
-                var aReason = absenceReasons.Where(a => a.Id == reasonId && a.Changeable).FirstOrDefault();
+                var aReason = absenceReasons.Where(a => a.Id == reasonId && 
+                    a.Changeable && a.StudentId == userId).FirstOrDefault();
                 if (aReason == null)
                 {
                     return false;

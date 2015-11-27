@@ -21,5 +21,15 @@ namespace CourseServer.Controllers
             var result = dispatchRepo.GetAvailableCourse();
             return view.ShowAvailableCourse(result);
         }
+
+        public string DispatchStudent()
+        {
+            var view = new GenericView();
+            DispatchRepository dispatchRepo = new DispatchRepository();
+
+            var result = dispatchRepo.GetDispatchStudent(Auth.User().Id);
+
+            return view.Show(result);
+        }
     }
 }
