@@ -9,9 +9,9 @@ namespace CourseProvider.Events
 {
     public class DispatchStudentEventArgs : BaseEventArgs
     {
-        public Dictionary<string, List<DispatchStudent>> DispatchStudentList;
+        public List<DispatchInfo> DispatchStudentList;
 
-        public DispatchStudentEventArgs(Dictionary<string, List<DispatchStudent>> dispatchStudentList)
+        public DispatchStudentEventArgs(List<DispatchInfo> dispatchStudentList)
         {
             DispatchStudentList = dispatchStudentList;
         }

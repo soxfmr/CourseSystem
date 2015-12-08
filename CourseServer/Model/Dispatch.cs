@@ -32,6 +32,8 @@ namespace CourseServer.Model
 
         public virtual Classroom Classroom { get; set; }
 
+        public virtual IList<Absence> Absences { get; set; }
+
         [JsonIgnore]
         public virtual IList<Attendance> Attendances { get; set; }
 

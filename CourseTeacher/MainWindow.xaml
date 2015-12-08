@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:CourseTeacher"
         xmlns:model="clr-namespace:CourseTeacher.Models"
         mc:Ignorable="d"
-        Title="COURSE FOR STUDENT"
+        Title="COURSE FOR TEACHER"
         Height="571" Width="840"
         WindowStartupLocation="CenterScreen"
         Style="{ StaticResource MaterialDesignWindowDefault }">

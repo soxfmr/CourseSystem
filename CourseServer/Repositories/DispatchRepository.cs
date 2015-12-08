@@ -65,7 +65,7 @@ namespace CourseServer.Repositories
             return null;
         }
 
-        public Dictionary<string, object> GetDispatchStudent(int userId)
+        public List<Dictionary<string, object>> GetDispatchStudent(int userId)
         {
             using (var context = GetDbContext())
             {
@@ -75,26 +75,36 @@ namespace CourseServer.Repositories
                 var result = dispatches.Where(d => d.TeacherId == userId);
                 if (result != null)
                 {
-                    var Ret = new Dictionary<string, object>();
-
-                    List<Dictionary<string, object>> container = new List<Dictionary<string, object>>();
-                    Dictionary <string, object> keeper = null;
-
                     var data = result.ToList();
+
+                    List<Dictionary<string, object>> Ret = new List<Dictionary<string, object>>();
+
+                    Dictionary<string, object> studentInfo, keeper;
+                    List<Dictionary<string, object>> studentList;
 
                     foreach (var dispatch in data)
                     {
-                        foreach (var student in dispatch.Students)
+                        if (dispatch.Students != null && dispatch.Students.Count > 0)
                         {
+                            studentList = new List<Dictionary<string, object>>();
+
+                            foreach (var student in dispatch.Students)
+                            {
+                                studentInfo = new Dictionary<string, object>();
+
+                                studentInfo.Add("StudentId", student.Id);
+                                studentInfo.Add("StudentName", student.Name);
+
+                                studentList.Add(studentInfo);
+                            }
+
                             keeper = new Dictionary<string, object>();
+                            keeper.Add("CourseName", dispatch.Course.Name);
+                            keeper.Add("CourseId", dispatch.Course.Id);
+                            keeper.Add("Students", studentList);
 
-                            keeper.Add("StudentId", student.Id);
-                            keeper.Add("StudentName", student.Name);
-
-                            container.Add(keeper);
+                            Ret.Add(keeper);
                         }
-
-                        Ret.Add(dispatch.Course.Name, container);
                     }
 
                     return Ret;

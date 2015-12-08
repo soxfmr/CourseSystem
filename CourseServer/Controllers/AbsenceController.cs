@@ -1,24 +1,19 @@
 ﻿using CourseServer.Framework;
 using CourseServer.Repositories;
 using CourseServer.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CourseServer.Controllers
 {
     public class AbsenceController : Controller
     {
-        private AbsenceRepository absenceRepo;
+        private AbsenceReasonRepository absenceReasonRepo;
 
         private AbsenceView absenceView;
 
         public AbsenceController()
         {
             absenceView = new AbsenceView();
-            absenceRepo = new AbsenceRepository();
+            absenceReasonRepo = new AbsenceReasonRepository();
         }
 
         /// <summary>
@@ -27,14 +22,14 @@ namespace CourseServer.Controllers
         /// <returns></returns>
         public string Index()
         {
-            var absenceReasons = absenceRepo.GetAll(Auth.User().Id);
+            var absenceReasons = absenceReasonRepo.GetAll(Auth.User().Id);
 
             return absenceView.Show(absenceReasons);
         }
 
         public string AllChangeableAbsence()
         {
-            var absenceReasons = absenceRepo.GetAllChangeableAbsence(Auth.User().Id);
+            var absenceReasons = absenceReasonRepo.GetAllChangeableAbsence(Auth.User().Id);
 
             return absenceView.Show(absenceReasons);
         }
@@ -53,7 +48,7 @@ namespace CourseServer.Controllers
                 return absenceView.Error(validator.GetDetail());
             }
 
-            bool ret = absenceRepo.Create(reason, courseId, Auth.User().Id);
+            bool ret = absenceReasonRepo.Create(reason, courseId, Auth.User().Id);
 
             return ret ? absenceView.Success() : absenceView.Error();
         }
@@ -72,7 +67,7 @@ namespace CourseServer.Controllers
                 return absenceView.Error(validator.GetDetail());
             }
 
-            bool ret = absenceRepo.Update(reason, reasonId, Auth.User().Id);
+            bool ret = absenceReasonRepo.Update(reason, reasonId, Auth.User().Id);
 
             return ret ? absenceView.Success() : absenceView.Error();
         }
@@ -89,7 +84,7 @@ namespace CourseServer.Controllers
                 return absenceView.Error(validator.GetDetail());
             }
 
-            bool ret = absenceRepo.Destroy(id, Auth.User().Id);
+            bool ret = absenceReasonRepo.Destroy(id, Auth.User().Id);
 
             return ret ? absenceView.Success() : absenceView.Error();
         }
@@ -100,7 +95,7 @@ namespace CourseServer.Controllers
         /// <returns></returns>
         public string GetAuditableAbsence()
         {
-            var result = absenceRepo.GetAuditableAbsence(Auth.User().Id);
+            var result = absenceReasonRepo.GetAuditableAbsence(Auth.User().Id);
 
             return absenceView.Show(result);
         }
@@ -113,7 +108,7 @@ namespace CourseServer.Controllers
                 return absenceView.Error(validator.GetDetail());
             }
 
-            bool ret = absenceRepo.AuditAbsence(id, Auth.User().Id);
+            bool ret = absenceReasonRepo.AuditAbsence(id, Auth.User().Id);
 
             return ret ? absenceView.Success() : absenceView.Error();
         }

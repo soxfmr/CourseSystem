@@ -22,35 +22,39 @@ namespace CourseTeacher
             mainModel.ViewSwitchCommand = new ActionCommand(SwithView);
 
             // Re-focus to the content of the list item
-            DrawerMenuList.AddHandler(MouseDownEvent,
-                    new MouseButtonEventHandler(delegate
-                    {
-                        var item = DrawerMenuList.SelectedItem as MenuItem;
-
-                        var view = item.Relationship.View;
-                        if (view == null)
-                        {
-                            (item.Relationship.ViewModel as CommandViewModel).Execute();
-                            return;
-                        }
-
-                        ViewContainer.Content = view;
-                    }), true);
+            DrawerMenuList.AddHandler(MouseDownEvent, new MouseButtonEventHandler(ListItemClickEvent), true);
 
             // Default view
             ViewContainer.Content = mainModel.ChildViewList["profile"].View;
 
-            Loaded += MainWindow_Loaded;
-        }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
             DialogHelper.SetupInvoke(this, "MainRootDialog");
         }
 
         public void SwithView(object o)
         {
             ViewContainer.Content = o;
+        }
+
+        public void ListItemClickEvent(object sender, MouseButtonEventArgs e)
+        {
+            var item = DrawerMenuList.SelectedItem as MenuItem;
+
+            var view = item.Relationship.View;
+            if (view == null)
+            {
+                var viewModel = item.Relationship.ViewModel;
+
+                if (viewModel != null &&
+                    // Perform the Execute method if it's an instance of CommandViewModel  
+                    viewModel.GetType().BaseType == typeof(CommandViewModel))
+                {
+                    (viewModel as CommandViewModel).Execute();
+                }
+
+                return;
+            }
+
+            ViewContainer.Content = view;
         }
     }
 }

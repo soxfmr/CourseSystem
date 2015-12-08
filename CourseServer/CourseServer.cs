@@ -37,7 +37,7 @@ namespace CourseServer
                 MiddlewareRegister.Register(typeof(AttendanceController), "studentACL", "Index");
                 // Access Control List for teacher
                 MiddlewareRegister.Register(typeof(AbsenceController), "teacherACL", "GetAuditableAbsence", "AuditAbsence");
-                MiddlewareRegister.Register(typeof(AttendanceController), "teacherACL", "CourseAttendance", "Store", "Destroy");
+                MiddlewareRegister.Register(typeof(AttendanceController), "teacherACL", "CourseAttendance", "Store", "Destroy", "AddStudentAbsence");
                 MiddlewareRegister.Register(typeof(DispatchController), "teacherACL", "DispatchStudent");
 
                 Route.Add("/login", "AuthController@OnLogin", "email,pass,mode");
@@ -69,6 +69,7 @@ namespace CourseServer
                 Route.Add("/teacher/attendance", "AttendanceController@CourseAttendance");
                 Route.Add("/teacher/attendance/create", "AttendanceController@Store", "dispatchId,population");
                 Route.Add("/teacher/attendance/destroy", "AttendanceController@Destroy", "id");
+                Route.Add("/teacehr/attendance/student/add", "AttendanceController@AddStudentAbsence", "type,studentId,dispatchId");
             });
 
             Console.CancelKeyPress += (sender, e) =>

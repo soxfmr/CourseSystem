@@ -124,6 +124,7 @@
     <Compile Include="Model\RolePermission.cs" />
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Model\Student.cs" />
+    <Compile Include="Repositories\AbsenceReasonRepository.cs" />
     <Compile Include="Repositories\AbsenceRepository.cs" />
     <Compile Include="Repositories\AttendanceRepository.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />

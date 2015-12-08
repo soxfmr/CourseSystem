@@ -62,6 +62,7 @@
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\CourseAttendance.cs" />
     <Compile Include="Models\DispatchCourse.cs" />
+    <Compile Include="Models\DispatchInfo.cs" />
     <Compile Include="Models\DispatchStudent.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="ProviderBridge.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ProfileProvider.cs" />
     <Compile Include="Providers\Provider.cs" />
+    <Compile Include="Providers\ServiceProvider.cs" />
     <Compile Include="Utils\EquipmentUtils.cs" />
     <Compile Include="Utils\TextUtils.cs" />
   </ItemGroup>

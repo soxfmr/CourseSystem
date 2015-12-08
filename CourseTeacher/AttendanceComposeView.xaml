@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CourseTeacher"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600"
+             d:DesignHeight="600" d:DesignWidth="600"
              Style="{ StaticResource VisualComponent }" Padding="0"
              Name="_this">
     <Grid>
@@ -23,8 +23,9 @@
             <ComboBox Name="CourseStudentMap" wpf:TextFieldAssist.Hint="考勤课程" ItemsSource="{Binding CourseSutdentMapList}" 
                       SelectedIndex="0"
                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                  DisplayMemberPath="Key" SelectedValuePath="Value" MinWidth="260" HorizontalAlignment="Left"/>
+                  DisplayMemberPath="CourseName" SelectedValuePath="Students" SelectedValue="CourseId" MinWidth="260" HorizontalAlignment="Left"/>
 
+            <TextBlock Margin="0 16 0 8">请选择缺勤学生</TextBlock>
             <DataGrid Background="#FFF" Margin="0 8 0 0" ItemsSource="{Binding ElementName=CourseStudentMap, Path=SelectedValue, UpdateSourceTrigger=PropertyChanged}"
                       CanUserSortColumns="True" CanUserReorderColumns="False" CanUserAddRows="False" 
                       CanUserDeleteRows="False" AutoGenerateColumns="False"
@@ -37,7 +38,8 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Margin="0 16 0 0" Style="{ StaticResource VisualButton }" 
+            <Button Margin="0 16 0 0" Style="{ StaticResource VisualButton }" Command="{Binding CreateAttendanceCommand}" 
+                    CommandParameter="{Binding ElementName=CourseStudentMap, Path=SelectedValuePath}"
                     HorizontalAlignment="Left">提交</Button>
         </StackPanel>
     </Grid>

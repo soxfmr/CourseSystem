@@ -22,6 +22,8 @@ namespace CourseProvider.Providers
             Bridge.Connect(RC_GET_ALL, carrier);
         }
 
+
+
         public override void ProviderLoaded(object sender, ProviderLoadedEventArgs e)
         {
             base.ProviderLoaded(sender, e);

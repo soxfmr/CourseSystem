@@ -4,19 +4,14 @@ using CourseProvider.Providers;
 using CourseTeacher.Domain;
 using CourseTeacher.Helper;
 using CourseTeacher.Models;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CourseTeacher.ViewModels
 {
     public class AttendanceComposeViewModel : BaseViewModel
     {
-        public Dictionary<string, List<DispatchStudent>> courseSutdentMapList;
-        public Dictionary<string, List<DispatchStudent>> CourseSutdentMapList
+        public List<DispatchInfo> courseSutdentMapList;
+        public List<DispatchInfo> CourseSutdentMapList
         {
             get
             {
@@ -36,6 +31,7 @@ namespace CourseTeacher.ViewModels
         private ViewModelRelationship Parent;
         
         private DispatchStudentProvider dispatchStudentProvider;
+        private CourseAttendanceProvider courseAttendanceProvider;
 
         public AttendanceComposeViewModel(IViewContainer container, ViewModelRelationship parent,
             string sessionId)
@@ -46,6 +42,9 @@ namespace CourseTeacher.ViewModels
 
             dispatchStudentProvider = new DispatchStudentProvider();
             dispatchStudentProvider.DispatchStudentEvent += DispatchStudentLoadedEvent;
+
+            courseAttendanceProvider = new CourseAttendanceProvider();
+            courseAttendanceProvider.CourseAbsenceEvent += CourseAttendancetLoadedEvent;
         }
 
         public override void Notify()
@@ -56,6 +55,28 @@ namespace CourseTeacher.ViewModels
         public void GetCourseStudentMap()
         {
             dispatchStudentProvider.GetAll(SessionId);
+        }
+
+        public void CreateAttendance(object o)
+        {
+            if (o == null)
+                return;
+
+            int courseId = (int) o;
+            
+            foreach (var map in CourseSutdentMapList)
+            {
+                if (map.CourseId == courseId)
+                {
+                    map.Students.ForEach(s =>
+                    {
+                        courseAttendanceProvider.AddStudent("Absence Reason", 
+                            s.StudentId, courseId, SessionId);
+                    });
+
+                    break;
+                }
+            }
         }
 
         public void DispatchStudentLoadedEvent(object sender, DispatchStudentEventArgs e)
@@ -73,7 +94,23 @@ namespace CourseTeacher.ViewModels
             }
         }
 
+        public void CourseAttendancetLoadedEvent(object sender, CourseAttendanceEventArgs e)
+        {
+            if (e.IsSuccess)
+            {
+            }
+        }
+
+
         #region EventCommand
+
+        public ActionCommand CreateAttendanceCommand
+        {
+            get
+            {
+                return new ActionCommand(CreateAttendance);
+            }
+        }
 
         public ActionCommand RefreshCommand
         {

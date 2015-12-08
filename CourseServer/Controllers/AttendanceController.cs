@@ -26,7 +26,9 @@ namespace CourseServer.Controllers
         /// <returns></returns>
         public string Index()
         {
-            var result = attendanceRepo.GetAll(Auth.User().Id);
+            AbsenceRepository absenceRepo = new AbsenceRepository();
+            var result = absenceRepo.GetAll(Auth.User().Id);
+
             return resultSetView.Show(result);           
         }
 
@@ -34,6 +36,31 @@ namespace CourseServer.Controllers
         {
             var result = attendanceRepo.GetAllCourseAttendance(Auth.User().Id);
             return resultSetView.Show(result);
+        }
+
+        /// <summary>
+        /// Record a student who absent on the course
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="studentId"></param>
+        /// <param name="dispatchId"></param>
+        /// <returns></returns>
+        public string AddStudentAbsence(string type, int studentId, int dispatchId)
+        {
+            Validator validator = new Validator();
+            // Validate the user input here.
+            if (!validator.Make(new string[] { type, studentId + "", dispatchId + "" },
+                new string[] { "required", "required", "required" },
+                new string[] { "type", "studentId", "dispatchId" }))
+            {
+                return resultSetView.Error(validator.GetDetail());
+            }
+
+            AbsenceRepository absenceRepo = new AbsenceRepository();
+
+            bool ret = absenceRepo.AddStudentAbsence(type, studentId, dispatchId, Auth.User().Id);
+
+            return ret ? resultSetView.Success() : resultSetView.Error();
         }
 
         public string Store(int dispatchId, int population)

@@ -155,7 +155,7 @@ namespace CourseServer.Framework
                 catch (Exception e)
                 {
                     Dumper.Log(TAG, string.Format("An error occur when try to dispatch the route {0}: {1}",
-                        dispatchInfo.Route, e.Message));
+                        dispatchInfo.Route, e.Message)); 
                     return ret;
                 }
             }

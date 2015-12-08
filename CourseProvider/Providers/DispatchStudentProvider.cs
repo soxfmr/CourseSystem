@@ -26,14 +26,14 @@ namespace CourseProvider.Providers
         {
             base.ProviderLoaded(sender, e);
 
-            Dictionary<string, List<DispatchStudent>> dispatchStudentList = null;
+            List<DispatchInfo> dispatchStudentList = null;
 
             if (e.IsSuccess)
             {
                 switch (e.RequestCode)
                 {
                     case RC_GET_ALL:
-                        dispatchStudentList = Parser.SerializeDict<string, List<DispatchStudent>>();
+                        dispatchStudentList = Parser.Serialize<List<DispatchInfo>>();
                         break;
                     default:
                         break;

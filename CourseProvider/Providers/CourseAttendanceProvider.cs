@@ -37,10 +37,22 @@ namespace CourseProvider.Providers
         
         public void Destroy(int id, string sessionId)
         {
-            ProviderCarrier carrier = new ProviderCarrier() { Route = "/teacher/attendanc/destroy" };
+            ProviderCarrier carrier = new ProviderCarrier() { Route = "/teacher/attendance/destroy" };
             carrier.AddAuth(sessionId);
 
             carrier.ParamList.Add("id", id);
+
+            Bridge.Connect(carrier);
+        }
+
+        public void AddStudent(string type, int studentId, int dispatchId, string sessionId)
+        {
+            ProviderCarrier carrier = new ProviderCarrier() { Route = "/teacher/attendanc/student/add" };
+            carrier.AddAuth(sessionId);
+
+            carrier.ParamList.Add("type", type);
+            carrier.ParamList.Add("studentId", studentId);
+            carrier.ParamList.Add("dispatchId", dispatchId);
 
             Bridge.Connect(carrier);
         }
