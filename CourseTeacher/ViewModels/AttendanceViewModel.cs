@@ -1,9 +1,9 @@
 ﻿using CommonLibrary.Domain;
+using CommonLibrary.Helper;
 using CommonLibrary.ViewModels;
 using CourseProvider.Events;
 using CourseProvider.Models;
 using CourseProvider.Providers;
-using CourseTeacher.Helper;
 using System.Collections.ObjectModel;
 using System.Linq;
 

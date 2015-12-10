@@ -1,10 +1,10 @@
 ﻿using System.Windows.Controls;
 using CourseProvider.Events;
 using CourseProvider.Providers;
-using CourseTeacher.Helper;
 using CourseProvider;
 using CommonLibrary.ViewModels;
 using CommonLibrary.Domain;
+using CommonLibrary.Helper;
 
 namespace CourseTeacher.ViewModels
 {

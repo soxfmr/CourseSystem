@@ -56,6 +56,7 @@
       <HintPath>..\packages\MahApps.Metro.1.1.3-ALPHA243\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,9 +68,16 @@
   <ItemGroup>
     <Compile Include="Domain\ActionCommand.cs" />
     <Compile Include="Helper\BaseDialogHelper.cs" />
+    <Compile Include="Helper\DialogHelper.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\ViewModelRelationship.cs" />
+    <Compile Include="ProgressDialogView.xaml.cs">
+      <DependentUpon>ProgressDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\IconResources.cs" />
+    <Compile Include="Toolbar.xaml.cs">
+      <DependentUpon>Toolbar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
@@ -84,6 +92,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\avatar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ProgressDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Toolbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

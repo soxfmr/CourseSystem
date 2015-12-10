@@ -1,9 +1,9 @@
 ﻿using CommonLibrary.Domain;
+using CommonLibrary.Helper;
 using CommonLibrary.ViewModels;
 using CourseProvider.Events;
 using CourseProvider.Models;
 using CourseProvider.Providers;
-using CourseStudent.Helper;
 using System.Windows.Threading;
 
 namespace CourseStudent.ViewModels

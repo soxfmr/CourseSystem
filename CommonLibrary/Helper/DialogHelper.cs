@@ -1,9 +1,8 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System.Windows.Threading;
-using CommonLibrary.Helper;
 using CommonLibrary.ViewModels;
 
-namespace CourseManager.Helper
+namespace CommonLibrary.Helper
 {
     public class DialogHelper : BaseDialogHelper
     {

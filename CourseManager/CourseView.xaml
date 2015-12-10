@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CourseManager"
+             xmlns:common="clr-namespace:CommonLibrary;assembly=CommonLibrary"
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
@@ -20,7 +20,7 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <local:Toolbar Title="课程表" PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
+        <common:Toolbar Title="课程表" PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
 
         <StackPanel>
             <DataGrid Background="#FFF" Margin="0 8 0 0" ItemsSource="{Binding DispatchCourseList, 

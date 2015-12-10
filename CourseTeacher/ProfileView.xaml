@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:local="clr-namespace:CourseTeacher"
+             xmlns:common="clr-namespace:CommonLibrary;assembly=CommonLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600"
              Style="{ StaticResource VisualComponent }" Padding="0"
@@ -25,7 +25,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <local:Toolbar Title="个人信息"
+        <common:Toolbar Title="个人信息"
                        PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
 
         <Grid Grid.Row="1" Margin="16">

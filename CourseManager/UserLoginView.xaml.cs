@@ -1,5 +1,5 @@
 ﻿using CommonLibrary.Domain;
-using CourseManager.Helper;
+using CommonLibrary.Helper;
 using CourseManager.ViewModels;
 
 namespace CourseManager

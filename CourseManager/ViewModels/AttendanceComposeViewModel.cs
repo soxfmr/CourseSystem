@@ -1,7 +1,7 @@
 ﻿using CommonLibrary.Domain;
+using CommonLibrary.Helper;
 using CommonLibrary.Models;
 using CommonLibrary.ViewModels;
-using CourseManager.Helper;
 using CourseProvider.Events;
 using CourseProvider.Models;
 using CourseProvider.Providers;

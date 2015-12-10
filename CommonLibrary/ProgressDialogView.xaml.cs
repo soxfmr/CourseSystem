@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CourseManager
+namespace CommonLibrary
 {
     /// <summary>
     /// ProgressDialogView.xaml 的交互逻辑

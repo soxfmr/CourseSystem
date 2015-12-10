@@ -93,12 +93,6 @@
     <Compile Include="ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProgressDialogView.xaml.cs">
-      <DependentUpon>ProgressDialogView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Toolbar.xaml.cs">
-      <DependentUpon>Toolbar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserLoginView.xaml.cs">
       <DependentUpon>UserLoginView.xaml</DependentUpon>
     </Compile>
@@ -140,21 +134,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helper\DialogHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>
       </SubType>
     </Compile>
     <Page Include="ProfileView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ProgressDialogView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Toolbar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

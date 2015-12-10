@@ -102,15 +102,8 @@
     <Compile Include="ApplyCourseView.xaml.cs">
       <DependentUpon>ApplyCourseView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helper\DialogHelper.cs" />
-    <Compile Include="ProgressDialogView.xaml.cs">
-      <DependentUpon>ProgressDialogView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Toolbar.xaml.cs">
-      <DependentUpon>Toolbar.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AbsenceComposeViewModel.cs" />
@@ -156,15 +149,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProgressDialogView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="RegisterView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Toolbar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

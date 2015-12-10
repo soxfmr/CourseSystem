@@ -1,5 +1,5 @@
 ﻿using CommonLibrary.Domain;
-using CourseStudent.Helper;
+using CommonLibrary.Helper;
 using CourseStudent.ViewModels;
 using System.Windows;
 

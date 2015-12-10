@@ -4,7 +4,7 @@ using CourseProvider.Providers;
 using CourseProvider;
 using CommonLibrary.ViewModels;
 using CommonLibrary.Domain;
-using CourseManager.Helper;
+using CommonLibrary.Helper;
 
 namespace CourseManager.ViewModels
 {

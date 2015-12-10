@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="CourseTeacher.Toolbar"
+﻿<UserControl x:Class="CommonLibrary.Toolbar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:local="clr-namespace:CourseTeacher"
+             xmlns:local="clr-namespace:CommonLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <wpf:ColorZone wpf:ShadowAssist.ShadowDepth="Depth0"

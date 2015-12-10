@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:local="clr-namespace:CourseTeacher"
+             xmlns:common="clr-namespace:CommonLibrary;assembly=CommonLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              Style="{ StaticResource VisualComponent }" Padding="0"
@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <local:Toolbar Title="课堂考勤" PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
+        <common:Toolbar Title="课堂考勤" PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
 
         <Grid Grid.Row="1" Margin="16">
             <Grid.RowDefinitions>

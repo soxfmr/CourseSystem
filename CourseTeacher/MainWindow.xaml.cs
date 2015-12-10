@@ -1,7 +1,7 @@
 ﻿using CommonLibrary.Domain;
+using CommonLibrary.Helper;
 using CommonLibrary.Models;
 using CommonLibrary.ViewModels;
-using CourseTeacher.Helper;
 using CourseTeacher.ViewModels;
 using System.Windows.Input;
 

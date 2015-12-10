@@ -1,7 +1,7 @@
 ﻿using CommonLibrary.Domain;
+using CommonLibrary.Helper;
 using CommonLibrary.ViewModels;
 using CourseProvider.Providers;
-using CourseStudent.Helper;
 
 namespace CourseStudent.ViewModels
 {

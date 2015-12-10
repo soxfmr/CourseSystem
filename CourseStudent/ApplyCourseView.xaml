@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CourseStudent"
+             xmlns:common="clr-namespace:CommonLibrary;assembly=CommonLibrary"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600"
@@ -14,7 +14,7 @@
             <RowDefinition Height="56" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <local:Toolbar Grid.Row="0" Title="订阅新课程" PositionAdjustment="1"                       
+        <common:Toolbar Grid.Row="0" Title="订阅新课程" PositionAdjustment="1"                       
                        RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}"
                        BackCommand="{Binding DataContext.BackToPreviousCommand, ElementName=_this}" />
         

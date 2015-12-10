@@ -1,9 +1,8 @@
 ﻿using CommonLibrary.Domain;
+using CommonLibrary.Helper;
 using CommonLibrary.Models;
 using CommonLibrary.ViewModels;
-using CourseStudent.Helper;
 using CourseStudent.ViewModels;
-using System.Windows;
 using System.Windows.Input;
 
 namespace CourseStudent
