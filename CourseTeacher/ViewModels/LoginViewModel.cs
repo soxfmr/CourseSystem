@@ -1,10 +1,10 @@
-﻿using System.Diagnostics;
-using System.Windows.Controls;
-using CourseTeacher.Domain;
+﻿using System.Windows.Controls;
 using CourseProvider.Events;
 using CourseProvider.Providers;
 using CourseTeacher.Helper;
 using CourseProvider;
+using CommonLibrary.ViewModels;
+using CommonLibrary.Domain;
 
 namespace CourseTeacher.ViewModels
 {

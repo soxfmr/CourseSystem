@@ -64,5 +64,25 @@ namespace CourseServer.Repositories.Tests
 
             repo.Update(repo.CurrentUser, "d", "d", "d", "password");
         }
+
+        [TestMethod()]
+        public void ExistsTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            UserRepository repo = new UserRepository();
+
+            Assert.AreEqual(true, repo.Exists(1, 1));
+        }
+
+        [TestMethod()]
+        public void DestroyTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            UserRepository repo = new UserRepository();
+
+            repo.Destroy(7, 0);
+        }
     }
 }

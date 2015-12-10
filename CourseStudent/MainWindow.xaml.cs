@@ -1,6 +1,7 @@
-﻿using CourseStudent.Domain;
+﻿using CommonLibrary.Domain;
+using CommonLibrary.Models;
+using CommonLibrary.ViewModels;
 using CourseStudent.Helper;
-using CourseStudent.Models;
 using CourseStudent.ViewModels;
 using System.Windows;
 using System.Windows.Input;
@@ -40,11 +41,6 @@ namespace CourseStudent
             // Default view
             ViewContainer.Content = mainModel.ChildViewList["profile"].View;
 
-            Loaded += MainWindow_Loaded;
-        }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
             DialogHelper.SetupInvoke(this, "MainRootDialog");
         }
 

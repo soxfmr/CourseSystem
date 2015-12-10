@@ -1,14 +1,14 @@
-﻿using CourseProvider.Events;
+﻿using CommonLibrary.Domain;
+using CommonLibrary.ViewModels;
+using CourseProvider.Events;
 using CourseProvider.Models;
 using CourseProvider.Providers;
-using CourseStudent.Domain;
 using CourseStudent.Helper;
-using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace CourseStudent.ViewModels
 {
-    public class ProfileViewModel : BaseViewModel, INotifiedableView
+    public class ProfileViewModel : BaseViewModel
     {
         private Profile _UserProfile = new Profile();
 

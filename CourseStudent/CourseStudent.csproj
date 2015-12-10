@@ -102,18 +102,13 @@
     <Compile Include="ApplyCourseView.xaml.cs">
       <DependentUpon>ApplyCourseView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Domain\ActionCommand.cs" />
-    <Compile Include="Domain\INotifiedableView.cs" />
-    <Compile Include="Domain\IViewContainer.cs" />
     <Compile Include="Helper\DialogHelper.cs" />
-    <Compile Include="Models\ViewModelRelationship.cs" />
     <Compile Include="ProgressDialogView.xaml.cs">
       <DependentUpon>ProgressDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\IconResources.cs" />
     <Compile Include="Toolbar.xaml.cs">
       <DependentUpon>Toolbar.xaml</DependentUpon>
     </Compile>
@@ -122,16 +117,12 @@
     <Compile Include="ViewModels\AbsenceViewModel.cs" />
     <Compile Include="ViewModels\ApplyCourseViewModel.cs" />
     <Compile Include="ViewModels\AttendanceViewModel.cs" />
-    <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\DispatchCourseViewModel.cs" />
     <Compile Include="ViewModels\FeedbackViewModel.cs" />
-    <Compile Include="ViewModels\LayerBaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\LogoutViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\DialogViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Page Include="AboutView.xaml">
       <SubType>Designer</SubType>
@@ -194,11 +185,9 @@
     <Compile Include="AttendanceView.xaml.cs">
       <DependentUpon>AttendanceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Domain\ObservableObject.cs" />
     <Compile Include="ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\MenuItem.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -238,9 +227,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\avatar.jpg" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj">
+      <Project>{6c69e7fb-0042-4404-b3e8-6665efa1b673}</Project>
+      <Name>CommonLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CourseProvider\CourseProvider.csproj">
       <Project>{d02b03c7-ab4f-48f0-b063-30d946e15176}</Project>
       <Name>CourseProvider</Name>

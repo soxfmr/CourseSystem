@@ -1,13 +1,9 @@
-﻿using CourseProvider.Events;
+﻿using CommonLibrary.Domain;
+using CommonLibrary.ViewModels;
+using CourseProvider.Events;
 using CourseProvider.Models;
 using CourseProvider.Providers;
-using CourseStudent.Domain;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CourseStudent.ViewModels
 {

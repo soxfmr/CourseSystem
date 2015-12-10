@@ -1,8 +1,8 @@
-﻿using CourseTeacher.Domain;
+﻿using CommonLibrary.Domain;
+using CommonLibrary.Models;
+using CommonLibrary.ViewModels;
 using CourseTeacher.Helper;
-using CourseTeacher.Models;
 using CourseTeacher.ViewModels;
-using System.Windows;
 using System.Windows.Input;
 
 namespace CourseTeacher

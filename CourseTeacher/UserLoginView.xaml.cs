@@ -1,7 +1,6 @@
-﻿using CourseTeacher.Domain;
+﻿using CommonLibrary.Domain;
 using CourseTeacher.Helper;
 using CourseTeacher.ViewModels;
-using MahApps.Metro.Controls;
 
 namespace CourseTeacher
 {

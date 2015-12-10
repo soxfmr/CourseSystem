@@ -11,6 +11,10 @@ namespace CourseServer.Framework
 
         private static List<RouteInfo> routeList =  new List<RouteInfo>();
 
+        private static bool GLOBAL_NAMESPACE_GROUP_SWITCH = false;
+
+        private static string GLOBAL_NAMESPACE = null;
+
         public static List<RouteInfo> getRouteList()
         {
             return routeList;
@@ -73,12 +77,38 @@ namespace CourseServer.Framework
         /// <param name="cache">determine that the response of this route can be cached.</param>
         public static void Add(string route, string handler, string args, bool cache)
         {
+            if (GLOBAL_NAMESPACE_GROUP_SWITCH && ! TextUtils.isEmpty(GLOBAL_NAMESPACE))
+            {
+                handler = GLOBAL_NAMESPACE + handler;
+            }
+
             RouteInfo routeInfo = Parse(route, handler, args, cache);
 
             if (routeInfo != null)
             {
                 routeList.Add(routeInfo);
             }
+        }
+
+        /// <summary>
+        /// Add a serial of routes with the special namespace prefix
+        /// </summary>
+        /// <param name="nameSpace">The namespace of the group</param>
+        /// <param name="callback">Register the route in the callback function as normal, all of route which register 
+        /// in this function will be prefix with the namespace
+        /// </param>
+        public static void Group(string nameSpace, Action callback)
+        {
+            try
+            {
+                OpenGlobalNamespace(nameSpace);
+                // Register a serial of routes with the namespace prefix
+                callback();
+            }
+            finally
+            {
+                CloseGlobalNamespace();
+            }            
         }
 
         private static RouteInfo Parse(string route, string handler, 
@@ -113,6 +143,25 @@ namespace CourseServer.Framework
             }
 
             return new RouteInfo(route, expectArgs, cache, routeHandler);
+        }
+
+        private static void OpenGlobalNamespace(string nameSpace)
+        {
+            if (!TextUtils.isEmpty(nameSpace) && !nameSpace.EndsWith("."))
+            {
+                nameSpace += ".";
+            }
+
+            GLOBAL_NAMESPACE = nameSpace;
+
+            GLOBAL_NAMESPACE_GROUP_SWITCH = true;
+        }
+
+        private static void CloseGlobalNamespace()
+        {
+            GLOBAL_NAMESPACE = null;
+
+            GLOBAL_NAMESPACE_GROUP_SWITCH = false;
         }
 
     }

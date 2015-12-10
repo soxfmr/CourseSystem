@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
         xmlns:local="clr-namespace:CourseTeacher"
-        xmlns:model="clr-namespace:CourseTeacher.Models"
+        xmlns:model="clr-namespace:CommonLibrary.Models;assembly=CommonLibrary"
         mc:Ignorable="d"
         Title="COURSE FOR TEACHER"
         Height="571" Width="840"

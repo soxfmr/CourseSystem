@@ -110,6 +110,27 @@ namespace CourseServer.Repositories
             return bRet;
         }
 
+        public bool Exists(int userId, int mode)
+        {
+            bool bRet = false;
+
+            switch (mode)
+            {
+                case CourseProviderContract.MODE_STUDENT:
+                    bRet = Exists<Student>(userId);
+                    break;
+                case CourseProviderContract.MODE_TEACHER:
+                    bRet = Exists<Teacher>(userId);
+                    break;
+                case CourseProviderContract.MODE_MANAGER:
+                    bRet = Exists<Manager>(userId);
+                    break;
+                default: break;
+            }
+
+            return bRet;
+        }
+
         /// <summary>
         /// Update the user properties with the giving value and save changes
         /// to the database
@@ -154,6 +175,23 @@ namespace CourseServer.Repositories
             }
         }
 
+        public void Destroy(int userId, int mode)
+        {
+            switch (mode)
+            {
+                case CourseProviderContract.MODE_STUDENT:
+                    Destroy<Student>(userId);
+                    break;
+                case CourseProviderContract.MODE_TEACHER:
+                    Destroy<Teacher>(userId);
+                    break;
+                case CourseProviderContract.MODE_MANAGER:
+                    Destroy<Manager>(userId);
+                    break;
+                default: break;
+            }
+        }
+
         private void Update<TEntity>(UserEntity user) where TEntity : UserEntity
         {
             UserEntity origin = null;
@@ -178,6 +216,17 @@ namespace CourseServer.Repositories
             origin.Avatar = newProfile.Avatar;
         }
 
+        private bool Exists<TEntity>(int id) where TEntity : UserEntity
+        {
+            using (var context = GetDbContext())
+            {
+                DbSet<TEntity> dbSet = context.Set<TEntity>();
+                CurrentUser = dbSet.Where(e => e.Id == id).FirstOrDefault();
+            }
+
+            return CurrentUser != null;
+        }
+
         private bool Exists<TEntity>(string email) where TEntity : UserEntity
         {
             using (var context = GetDbContext())
@@ -187,6 +236,22 @@ namespace CourseServer.Repositories
             }
 
             return CurrentUser != null;
+        }
+
+        private void Destroy<TEntity>(int userId) where TEntity : UserEntity
+        {
+            using (var context = GetDbContext())
+            {
+                DbSet<TEntity> dbSet = context.Set<TEntity>();
+                var user = dbSet.Where(e => e.Id == userId).FirstOrDefault();
+
+                if (user != null)
+                {
+                    dbSet.Remove(user);
+                }
+
+                context.SaveChanges();
+            }
         }
 
         private bool hasUser<TEntity>(string email, string pass) where TEntity : UserEntity

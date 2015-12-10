@@ -1,9 +1,10 @@
-﻿using CourseProvider.Events;
+﻿using CommonLibrary.Domain;
+using CommonLibrary.Models;
+using CommonLibrary.ViewModels;
+using CourseProvider.Events;
 using CourseProvider.Models;
 using CourseProvider.Providers;
-using CourseTeacher.Domain;
 using CourseTeacher.Helper;
-using CourseTeacher.Models;
 using System.Collections.Generic;
 
 namespace CourseTeacher.ViewModels

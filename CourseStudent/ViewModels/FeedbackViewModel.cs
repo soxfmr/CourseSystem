@@ -1,9 +1,5 @@
-﻿using CourseStudent.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommonLibrary.Domain;
+using CommonLibrary.ViewModels;
 
 namespace CourseStudent.ViewModels
 {

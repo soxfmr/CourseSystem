@@ -1,7 +1,4 @@
-﻿using CourseTeacher.Domain;
-using CourseTeacher.ViewModels;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Controls;
 
 namespace CourseTeacher
 {

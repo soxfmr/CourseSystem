@@ -1,7 +1,6 @@
-﻿using CourseStudent.Domain;
+﻿using CommonLibrary.Domain;
 using CourseStudent.Helper;
 using CourseStudent.ViewModels;
-using MahApps.Metro.Controls;
 
 namespace CourseStudent
 {
@@ -20,16 +19,6 @@ namespace CourseStudent
 
             DataContext = viewModel;
 
-            this.Loaded += UserLoginView_Loaded;
-        }
-
-        /// <summary>
-        /// Switch the window instance of the dialog helper class
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void UserLoginView_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
             DialogHelper.SetupInvoke(this, "LoginRootDialog");
         }
 

@@ -1,9 +1,9 @@
 ﻿using CourseProvider.Models;
-using CourseTeacher.Domain;
-using CourseTeacher.Models;
-using CourseTeacher.Resources;
 using System.Collections.Generic;
-using System;
+using CommonLibrary.ViewModels;
+using CommonLibrary.Domain;
+using CommonLibrary.Models;
+using CommonLibrary.Resources;
 
 namespace CourseTeacher.ViewModels
 {
