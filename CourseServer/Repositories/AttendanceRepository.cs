@@ -52,10 +52,10 @@ namespace CourseServer.Repositories
         /// Add a new attendance status for the course
         /// </summary>
         /// <param name="dispatchId"></param>
-        /// <param name="population"></param>
+        /// <param name="absence"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public bool Create(int dispatchId, int population, int userId)
+        public bool Create(int dispatchId, int absence, int userId)
         {
             bool bRet = false;
 
@@ -63,9 +63,12 @@ namespace CourseServer.Repositories
             {
                 DbSet<Dispatch> dispatches = context.Set<Dispatch>();
 
-                var dispatch = dispatches.Where(d => d.Id == dispatchId && d.TeacherId == userId).FirstOrDefault();
+                var dispatch = dispatches.Where(d => d.Id == dispatchId && 
+                            d.TeacherId == userId).FirstOrDefault();
                 if (dispatch != null)
                 {
+                    int population = absence > dispatch.Current ? 0 : dispatch.Current - absence;
+
                     Attendance attendance = new Attendance() { Dispatch = dispatch, Population = population };
                     dispatch.Attendances.Add(attendance);
 

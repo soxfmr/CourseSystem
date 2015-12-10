@@ -9,17 +9,32 @@ namespace CourseProvider.Models
 {
     public class CourseAttendance : ObservableObject
     {
-        private DateTime createdAT;
+        private bool isSelected;
+
+        public bool IsSelected
+        {
+            get
+            {
+                return isSelected;
+            }
+            set
+            {
+                isSelected = value;
+                NotifyPropertyChanged("IsSelected");
+            }
+        }
+
+        private DateTime createdAt;
 
         public DateTime CreatedAt
         {
             get
             {
-                return createdAT;
+                return createdAt;
             }
             set
             {
-                createdAT = value;
+                createdAt = value;
                 NotifyPropertyChanged("CreatedAt");
             }
         }

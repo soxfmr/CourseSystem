@@ -62,5 +62,14 @@ namespace CourseServer.Repositories.Tests
             AttendanceRepository repo = new AttendanceRepository();
             //Assert.AreEqual(false, repo.AddStudentAbsence("Other", 2, 2, 1));
         }
+
+        [TestMethod()]
+        public void CreateTest1()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            AttendanceRepository repo = new AttendanceRepository();
+            repo.Create(2, 0, 1);
+        }
     }
 }

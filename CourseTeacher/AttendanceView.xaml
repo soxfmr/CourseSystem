@@ -26,6 +26,18 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            Command="{Binding SelectAllCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    全选
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="8 0 0 0"
+                            Command="{Binding ReverseCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    反选
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            Command="{Binding RemoveAttendanceCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    删除选中
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right"
                             Command="{Binding ShowAttendanceComposeViewCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
                     新建今日考勤
                 </Button>
@@ -37,6 +49,8 @@
                       CanUserDeleteRows="False" AutoGenerateColumns="False"
                       wpf:DataGridAssist.CellPadding="13 8 8 8" wpf:DataGridAssist.ColumnHeaderPadding="8">
                 <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                                                ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}" />
                     <DataGridTextColumn Binding="{Binding CourseName}" IsReadOnly="True"
                                             Header="课程名称" />
                     <DataGridTextColumn Binding="{Binding Population}" IsReadOnly="True"

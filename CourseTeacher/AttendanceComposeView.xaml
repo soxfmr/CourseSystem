@@ -23,7 +23,7 @@
             <ComboBox Name="CourseStudentMap" wpf:TextFieldAssist.Hint="考勤课程" ItemsSource="{Binding CourseSutdentMapList}" 
                       SelectedIndex="0"
                       Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                  DisplayMemberPath="CourseName" SelectedValuePath="Students" SelectedValue="CourseId" MinWidth="260" HorizontalAlignment="Left"/>
+                  DisplayMemberPath="CourseName" SelectedItem="CourseId" SelectedValuePath="Students" MinWidth="260" HorizontalAlignment="Left"/>
 
             <TextBlock Margin="0 16 0 8">请选择缺勤学生</TextBlock>
             <DataGrid Background="#FFF" Margin="0 8 0 0" ItemsSource="{Binding ElementName=CourseStudentMap, Path=SelectedValue, UpdateSourceTrigger=PropertyChanged}"
@@ -39,7 +39,7 @@
             </DataGrid>
 
             <Button Margin="0 16 0 0" Style="{ StaticResource VisualButton }" Command="{Binding CreateAttendanceCommand}" 
-                    CommandParameter="{Binding ElementName=CourseStudentMap, Path=SelectedValuePath}"
+                    CommandParameter="{Binding ElementName=CourseStudentMap, Path=SelectedItem}"
                     HorizontalAlignment="Left">提交</Button>
         </StackPanel>
     </Grid>

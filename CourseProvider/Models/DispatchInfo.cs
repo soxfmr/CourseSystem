@@ -9,6 +9,21 @@ namespace CourseProvider.Models
 {
     public class DispatchInfo : ObservableObject
     {
+        private bool isSelected;
+
+        public bool IsSelected
+        {
+            get
+            {
+                return isSelected;
+            }
+            set
+            {
+                isSelected = value;
+                NotifyPropertyChanged("IsSelected");
+            }
+        }
+
         private string courseName;
         public string CourseName {
             get

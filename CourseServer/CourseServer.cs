@@ -67,9 +67,9 @@ namespace CourseServer
                 Route.Add("/teacher/absence/audit", "AbsenceController@AuditAbsence", "id");
                 // Attendance manager for teacher
                 Route.Add("/teacher/attendance", "AttendanceController@CourseAttendance");
-                Route.Add("/teacher/attendance/create", "AttendanceController@Store", "dispatchId,population");
+                Route.Add("/teacher/attendance/create", "AttendanceController@Store", "dispatchId,absence");
                 Route.Add("/teacher/attendance/destroy", "AttendanceController@Destroy", "id");
-                Route.Add("/teacehr/attendance/student/add", "AttendanceController@AddStudentAbsence", "type,studentId,dispatchId");
+                Route.Add("/teacher/attendance/student/add", "AttendanceController@AddStudentAbsence", "type,studentId,dispatchId");
             });
 
             Console.CancelKeyPress += (sender, e) =>

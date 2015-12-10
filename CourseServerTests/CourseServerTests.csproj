@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Builders\JSONRouteBuilderTests.cs" />
     <Compile Include="Controllers\AbsenceControllerTests.cs" />
+    <Compile Include="Controllers\AttendanceControllerTests.cs" />
     <Compile Include="Controllers\CourseControllerTests.cs" />
     <Compile Include="Controllers\UserControllerTests.cs" />
     <Compile Include="CourseDbContextTests.cs" />

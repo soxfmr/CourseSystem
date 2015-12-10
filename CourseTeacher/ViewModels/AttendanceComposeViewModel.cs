@@ -62,21 +62,24 @@ namespace CourseTeacher.ViewModels
             if (o == null)
                 return;
 
-            int courseId = (int) o;
-            
-            foreach (var map in CourseSutdentMapList)
-            {
-                if (map.CourseId == courseId)
-                {
-                    map.Students.ForEach(s =>
-                    {
-                        courseAttendanceProvider.AddStudent("Absence Reason", 
-                            s.StudentId, courseId, SessionId);
-                    });
+            DialogHelper.ShowProgressDialog("正在创建考勤...");
 
-                    break;
+            int absence = 0;
+            var dispatchInfo = (DispatchInfo) o;
+
+            dispatchInfo.Students.ForEach(s =>
+            {
+                if (s.IsSelected)
+                {
+                    courseAttendanceProvider.AddStudent("Absence Reason",
+                        s.StudentId, dispatchInfo.CourseId, SessionId);
+
+                    // Increase the count of the absence student
+                    absence++;
                 }
-            }
+            });
+
+            courseAttendanceProvider.Create(dispatchInfo.CourseId, absence, SessionId);
         }
 
         public void DispatchStudentLoadedEvent(object sender, DispatchStudentEventArgs e)
@@ -96,8 +99,17 @@ namespace CourseTeacher.ViewModels
 
         public void CourseAttendancetLoadedEvent(object sender, CourseAttendanceEventArgs e)
         {
+            DialogHelper.Close();
+
             if (e.IsSuccess)
             {
+                (Parent.ViewModel as AttendanceViewModel).GetAllCourseAttendance();
+
+                DialogHelper.Show("考勤已创建");
+                DialogHelper.Dispatcher.Invoke(delegate
+                {
+                    BackToPreviousCommand.Execute(null);
+                });
             }
         }
 

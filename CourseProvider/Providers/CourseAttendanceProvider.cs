@@ -24,13 +24,13 @@ namespace CourseProvider.Providers
             Bridge.Connect(RC_GET_ALL, carrier);
         }
 
-        public void Create(int dispatchId, int population, string sessionId)
+        public void Create(int dispatchId, int absence, string sessionId)
         {
             ProviderCarrier carrier = new ProviderCarrier() { Route = "/teacher/attendance/create" };
             carrier.AddAuth(sessionId);
 
             carrier.ParamList.Add("dispatchId", dispatchId);
-            carrier.ParamList.Add("population", population);
+            carrier.ParamList.Add("absence", absence);
 
             Bridge.Connect(RC_CREATE, carrier);
         }
@@ -47,7 +47,7 @@ namespace CourseProvider.Providers
 
         public void AddStudent(string type, int studentId, int dispatchId, string sessionId)
         {
-            ProviderCarrier carrier = new ProviderCarrier() { Route = "/teacher/attendanc/student/add" };
+            ProviderCarrier carrier = new ProviderCarrier() { Route = "/teacher/attendance/student/add" };
             carrier.AddAuth(sessionId);
 
             carrier.ParamList.Add("type", type);

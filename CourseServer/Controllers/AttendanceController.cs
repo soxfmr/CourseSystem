@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CourseServer.Controllers
 {
-    class AttendanceController : Controller
+    public class AttendanceController : Controller
     {
         private ResultSetView resultSetView;
         private AttendanceRepository attendanceRepo;
@@ -63,18 +63,19 @@ namespace CourseServer.Controllers
             return ret ? resultSetView.Success() : resultSetView.Error();
         }
 
-        public string Store(int dispatchId, int population)
+        public string Store(int dispatchId, int absence)
         {
             Validator validator = new Validator();
             // Validate the user input here.
-            if (! validator.Make(new string[] { dispatchId + "", population + "" },
+            if (! validator.Make(new string[] { dispatchId + "", absence + "" },
                 new string[] { "required", "required|min:0" },
-                new string[] { "dispatchId", "population" }))
+                new string[] { "dispatchId", "absence" }))
             {
                 return resultSetView.Error(validator.GetDetail());
             }
 
-            bool ret = attendanceRepo.Create(dispatchId, population, Auth.User().Id);
+            bool ret = attendanceRepo.Create(dispatchId, absence, Auth.User().Id);
+
             return ret ? resultSetView.Success() : resultSetView.Error();
         }
 
