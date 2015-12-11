@@ -62,7 +62,6 @@ namespace CourseProvider.Models
         }
 
         private DateTime createdAt;
-
         public DateTime CreatedAt
         {
             get
@@ -71,7 +70,7 @@ namespace CourseProvider.Models
             }
             set
             {
-                value = createdAt;
+                createdAt = value;
                 NotifyPropertyChanged("CreatedAt");
             }
         }
