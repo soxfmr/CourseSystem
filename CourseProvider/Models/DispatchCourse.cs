@@ -1,4 +1,4 @@
-﻿using CourseProvider.Domain;
+﻿using CommonLibrary.Domain;
 using System;
 
 namespace CourseProvider.Models

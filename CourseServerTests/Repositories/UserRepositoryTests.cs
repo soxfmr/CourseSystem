@@ -84,5 +84,15 @@ namespace CourseServer.Repositories.Tests
 
             repo.Destroy(7, 0);
         }
+
+        [TestMethod()]
+        public void GetAllUserByModeTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            UserRepository repo = new UserRepository();
+
+            Assert.AreEqual(2, repo.GetAllUserByMode(0).Count);
+        }
     }
 }

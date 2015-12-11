@@ -30,6 +30,29 @@ namespace CourseServer.Tests
         }
 
         [TestMethod()]
+        public void AddUser()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+            using (var db = DbContextHelper.NewInstance())
+            {
+                var managers = db.Set<Manager>();
+                var roles = db.Set<Role>();
+                var permissions = db.Set<Permission>();
+
+                Permission perm = new Permission() { Name = "All" };
+                permissions.Add(perm);
+                
+                Role role = new Role() { Name = "Admin", Description = "Grant all of permission" };
+                roles.Add(role);
+
+                Manager manager = new Manager() { Name = "Yuge", Email = "yuge@gmail.com", Password = Guard.Encrypt("password"), Role = role };
+                managers.Add(manager);
+
+                db.SaveChanges();
+            }
+        }
+
+        [TestMethod()]
         public void InsertseDbContextTest()
         {
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);

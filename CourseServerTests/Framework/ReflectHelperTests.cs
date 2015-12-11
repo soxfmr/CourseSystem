@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CourseServer.Controllers;
 using System.Reflection;
+using CourseServer.Controllers.Advance;
+using CourseServerTests.Controllers.Deepth;
 
 namespace CourseServer.Framework.Tests
 {
@@ -30,11 +32,12 @@ namespace CourseServer.Framework.Tests
         {
             ReflectHelper reflectHelper = new ReflectHelper();
             reflectHelper.setGlobalNamespace("CourseServer.Controllers");
-            RouteHandlerInfo handlerInfo = reflectHelper.GetRouteHandler("CourseController@Index");
+            reflectHelper.setInsecureReflect(true);
+            RouteHandlerInfo handlerInfo = reflectHelper.GetRouteHandler("Advance.UserManagerController@AllUser");
 
-            Assert.AreEqual(typeof(CourseController), handlerInfo.Handler);
+            Assert.AreEqual(typeof(UserManagerController), handlerInfo.Handler);
 
-            Assert.AreEqual(0, handlerInfo.ParamInfo.Length);
+            Assert.AreEqual(1, handlerInfo.ParamInfo.Length);
 
             //Assert.AreEqual("DoSomething", handlerInfo.Callback.Name);
         }

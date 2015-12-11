@@ -1,11 +1,6 @@
 ﻿using CourseServer.Framework;
 using CourseServer.Repositories;
 using CourseServer.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CourseServer.Controllers.Advance
 {
@@ -22,7 +17,15 @@ namespace CourseServer.Controllers.Advance
 
         public string AllUser(int mode)
         {
+            Validator validator = new Validator();
+            if (! validator.MatchRule(mode + "", "required", "mode"))
+            {
+                return view.Error(validator.GetDetail());
+            }
 
+            var result = userRepo.GetAllUserByMode(mode);
+
+            return view.Show(result);
         }
 
         public string Store(string email, string user, string pass, int mode)

@@ -20,6 +20,7 @@ namespace CourseServer.Views
             foreach(Course course in recordSet)
             {
                 obj = new JObject();
+                obj.Add(new JProperty("Id", course.Id));
                 obj.Add(new JProperty("Name", course.Name));
                 obj.Add(new JProperty("Description", course.Description));
                 obj.Add(new JProperty("MajorName", course.Major.Name));

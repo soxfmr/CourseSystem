@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CourseProviderContract.cs" />
-    <Compile Include="Domain\ObservableObject.cs" />
     <Compile Include="Events\AuditAbsenceEventArgs.cs" />
     <Compile Include="Events\AttendanceEventArgs.cs" />
     <Compile Include="Events\AbsenceEventArgs.cs" />
@@ -57,6 +56,7 @@
     <Compile Include="Events\LoginEventArgs.cs" />
     <Compile Include="Events\ProfileEventArgs.cs" />
     <Compile Include="Events\ProviderLoadedEvent.cs" />
+    <Compile Include="Events\UserManageEventArgs.cs" />
     <Compile Include="Models\AuditAbsence.cs" />
     <Compile Include="Models\Absence.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -69,6 +69,7 @@
     <Compile Include="ProviderCarrier.cs" />
     <Compile Include="ProviderParser.cs" />
     <Compile Include="ProviderSettings.cs" />
+    <Compile Include="Providers\Advance\UserManageProvider.cs" />
     <Compile Include="Providers\AuditAbsenceProvider.cs" />
     <Compile Include="Providers\AbsenceProvider.cs" />
     <Compile Include="Providers\AttendanceProvider.cs" />
@@ -85,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj">
+      <Project>{6c69e7fb-0042-4404-b3e8-6665efa1b673}</Project>
+      <Name>CommonLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

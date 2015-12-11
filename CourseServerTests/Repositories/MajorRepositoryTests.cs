@@ -5,23 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CourseServer.Model;
 using CourseServer.Framework;
 
 namespace CourseServer.Repositories.Tests
 {
     [TestClass()]
-    public class CourseRepositoryTests
+    public class MajorRepositoryTests
     {
         [TestMethod()]
-        public void AllTest()
+        public void GetAllTest()
         {
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
-            CourseRepository repo = new CourseRepository();
-            List<Course> courseList = repo.All();
-
-            Assert.AreEqual("电子系", courseList[0].Major.Name);
+            MajorRepository repo = new MajorRepository();
+            Assert.AreEqual(2, repo.GetAll());
         }
 
         [TestMethod()]
@@ -29,19 +26,17 @@ namespace CourseServer.Repositories.Tests
         {
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
-            CourseRepository repo = new CourseRepository();
-
-            Assert.AreEqual(true, repo.Create("Computer Network", "Foundation", 2, 3));
+            MajorRepository repo = new MajorRepository();
+            Assert.AreEqual(true, repo.Create("Game", "Playing game!"));
         }
 
         [TestMethod()]
-        public void RemoveTest()
+        public void DestroyTest()
         {
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
-            CourseRepository repo = new CourseRepository();
-
-            repo.Remove(2);
+            MajorRepository repo = new MajorRepository();
+            Assert.AreEqual(true, repo.Destroy(3));
         }
 
         [TestMethod()]
@@ -49,9 +44,8 @@ namespace CourseServer.Repositories.Tests
         {
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
-            CourseRepository repo = new CourseRepository();
-
-            Assert.AreEqual(true, repo.Update(3, "Comupter Network", "Compter Network Foundation", 2));
+            MajorRepository repo = new MajorRepository();
+            Assert.AreEqual(true, repo.Update(3, "Game", "Nitontan"));
         }
     }
 }

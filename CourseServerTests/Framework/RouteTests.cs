@@ -60,5 +60,14 @@ namespace CourseServer.Framework.Tests
 
             //Assert.IsTrue(info.Instance is TestController);
         }
+
+        [TestMethod()]
+        public void GroupTest()
+        {
+            Route.Group("Advance", delegate
+            {
+                Route.Add("/test", "UserManagerController@AllUser");
+            });
+        }
     }
 }

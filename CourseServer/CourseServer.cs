@@ -25,25 +25,25 @@ namespace CourseServer
                 MiddlewareRegister.Add("teacherACL", new AccessControlMiddleware(CourseProviderContract.MODE_TEACHER));
                 MiddlewareRegister.Add("managerACL", new AccessControlMiddleware(CourseProviderContract.MODE_MANAGER));
 
-                MiddlewareRegister.Register(typeof(CourseController), "auth", "Index");
-                MiddlewareRegister.Register(typeof(DispatchController), "auth", "Index", "DispatchStudent");
-                MiddlewareRegister.Register(typeof(AuthController), "auth", "OnLogout");
-                MiddlewareRegister.Register(typeof(UserController), "auth", "Profile", "Update", 
+                MiddlewareRegister.Register(typeof(CourseController),       "auth", "Index");
+                MiddlewareRegister.Register(typeof(DispatchController),     "auth", "Index", "DispatchStudent");
+                MiddlewareRegister.Register(typeof(AuthController),         "auth", "OnLogout");
+                MiddlewareRegister.Register(typeof(UserController),         "auth", "Profile", "Update", 
                     "CreateDispatch", "ShowDispatch", "RemoveDispatch");
-                MiddlewareRegister.Register(typeof(AbsenceController), "auth", "Index", "AllChangeableAbsence",
+                MiddlewareRegister.Register(typeof(AbsenceController),      "auth", "Index", "AllChangeableAbsence",
                     "Store", "Update", "Destroy");
-                MiddlewareRegister.Register(typeof(AttendanceController), "auth", "Index");
-                MiddlewareRegister.Register(typeof(UserManagerController), "auth", "Store", "Profile", "Update", "Destroy");
+                MiddlewareRegister.Register(typeof(AttendanceController),   "auth", "Index");
+                MiddlewareRegister.Register(typeof(UserManagerController),  "auth", "Store", "Profile", "Update", "Destroy", "AllUser");
                 // Access Control List for student
-                MiddlewareRegister.Register(typeof(UserController), "studentACL", "CreateDispatch", "RemoveDispatch");
-                MiddlewareRegister.Register(typeof(AbsenceController), "studentACL", "Index", "AllChangeableAbsence", "Store", "Update", "Destroy");
-                MiddlewareRegister.Register(typeof(AttendanceController), "studentACL", "Index");
+                MiddlewareRegister.Register(typeof(UserController),         "studentACL", "CreateDispatch", "RemoveDispatch");
+                MiddlewareRegister.Register(typeof(AbsenceController),      "studentACL", "Index", "AllChangeableAbsence", "Store", "Update", "Destroy");
+                MiddlewareRegister.Register(typeof(AttendanceController),   "studentACL", "Index");
                 // Access Control List for teacher
-                MiddlewareRegister.Register(typeof(AbsenceController), "teacherACL", "GetAuditableAbsence", "AuditAbsence");
-                MiddlewareRegister.Register(typeof(AttendanceController), "teacherACL", "CourseAttendance", "Store", "Destroy", "AddStudentAbsence");
-                MiddlewareRegister.Register(typeof(DispatchController), "teacherACL", "DispatchStudent");
+                MiddlewareRegister.Register(typeof(AbsenceController),      "teacherACL", "GetAuditableAbsence", "AuditAbsence");
+                MiddlewareRegister.Register(typeof(AttendanceController),   "teacherACL", "CourseAttendance", "Store", "Destroy", "AddStudentAbsence");
+                MiddlewareRegister.Register(typeof(DispatchController),     "teacherACL", "DispatchStudent");
                 // Advanced Access Control List
-                MiddlewareRegister.Register(typeof(UserManagerController), "managerACL", "Store", "Profile", "Update", "Destroy");
+                MiddlewareRegister.Register(typeof(UserManagerController),  "managerACL", "Store", "Profile", "Update", "Destroy", "AllUser");
 
                 Route.Add("/login", "AuthController@OnLogin", "email,pass,mode");
                 Route.Add("/register", "AuthController@OnRegister", "email,user,pass");
@@ -79,10 +79,11 @@ namespace CourseServer
                 // Advance function
                 Route.Group("Advance", delegate
                 {
-                    Route.Add("/advance/user/profile", "UserManagerController@Profile");
-                    Route.Add("/advance/user/store", "UserManagerController@Store");
-                    Route.Add("/advance/user/destroy", "UserManagerController@Destroy");
-                    Route.Add("/advance/user/update", "UserManagerController@Update");
+                    Route.Add("/advance/user", "UserManagerController@AllUser", "mode");
+                    Route.Add("/advance/user/profile", "UserManagerController@Profile", "id,mode");
+                    Route.Add("/advance/user/store", "UserManagerController@Store", "email,user,pass,mode");
+                    Route.Add("/advance/user/destroy", "UserManagerController@Destroy", "id,mode");
+                    Route.Add("/advance/user/update", "UserManagerController@Update", "id,mode,name,avatar,cellphone,newPwd,pwdConfirm");
                 });
             });
 

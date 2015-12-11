@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CourseServer.Framework;
+using CourseServer.Controllers.Advance;
 
 namespace CourseServer.Controllers.Tests
 {

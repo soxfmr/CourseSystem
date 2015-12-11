@@ -1,9 +1,5 @@
-﻿using CourseProvider.Domain;
+﻿using CommonLibrary.Domain;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CourseProvider.Models
 {
@@ -62,6 +58,21 @@ namespace CourseProvider.Models
             {
                 cellphone = value;
                 NotifyPropertyChanged("Cellphone");
+            }
+        }
+
+        private DateTime createdAt;
+
+        public DateTime CreatedAt
+        {
+            get
+            {
+                return createdAt;
+            }
+            set
+            {
+                value = createdAt;
+                NotifyPropertyChanged("CreatedAt");
             }
         }
     }

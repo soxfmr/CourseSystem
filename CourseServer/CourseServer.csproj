@@ -67,6 +67,7 @@
     <Compile Include="Contract\IDispatcher.cs" />
     <Compile Include="Contract\IRouteBuilder.cs" />
     <Compile Include="Controllers\AbsenceController.cs" />
+    <Compile Include="Controllers\Advance\MajorController.cs" />
     <Compile Include="Controllers\Advance\UserManagerController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\Controller.cs" />
@@ -129,7 +130,9 @@
     <Compile Include="Repositories\AbsenceRepository.cs" />
     <Compile Include="Repositories\AttendanceRepository.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
+    <Compile Include="Repositories\DispatchManageRepository.cs" />
     <Compile Include="Repositories\DispatchRepository.cs" />
+    <Compile Include="Repositories\MajorRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Framework\UserConfiguration.cs" />

@@ -53,6 +53,10 @@ namespace CourseManager.ViewModels
                 new AttendanceComposeViewModel(this, ChildViewList["attendance"], SessionId),
                 new AttendanceComposeView()));
 
+            /*
+            * Profile, User Management, Course, Dispatch, Major, Attendance (Without pagination and catalog)
+            * Absence (Without pagination and catalog)
+            */
             MenuItemList = new List<MenuItem>();
             MenuItemList.Add(new MenuItem { Title = "个人信息", Icon = IconResources.ICON_USER, Relationship = ChildViewList["profile"] });
             MenuItemList.Add(new MenuItem { Title = "课程表", Icon = IconResources.ICON_COURSE, Relationship = ChildViewList["course"] });

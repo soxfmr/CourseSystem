@@ -69,6 +69,7 @@
     <Compile Include="Controllers\AbsenceControllerTests.cs" />
     <Compile Include="Controllers\AttendanceControllerTests.cs" />
     <Compile Include="Controllers\CourseControllerTests.cs" />
+    <Compile Include="Controllers\Deepth\TestController.cs" />
     <Compile Include="Controllers\UserControllerTests.cs" />
     <Compile Include="CourseDbContextTests.cs" />
     <Compile Include="Framework\DispatcherImplTests.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Repositories\AttendanceRepositoryTests.cs" />
     <Compile Include="Repositories\CourseRepositoryTests.cs" />
     <Compile Include="Repositories\DispatchRepositoryTests.cs" />
+    <Compile Include="Repositories\MajorRepositoryTests.cs" />
     <Compile Include="Repositories\UserRepositoryTests.cs" />
     <Compile Include="Utils\DumperTests.cs" />
     <Compile Include="Utils\GenericUtilsTests.cs" />

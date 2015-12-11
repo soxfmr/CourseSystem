@@ -4,6 +4,7 @@ using CourseServer.Framework;
 using CourseServer.Helper;
 using CourseServer.Model;
 using CourseServer.Utils;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -15,6 +16,26 @@ namespace CourseServer.Repositories
         public string SessionId { get; private set; }
 
         public UserEntity CurrentUser { get; private set; }
+
+        public List<Dictionary<string, object>> GetAllUserByMode(int mode)
+        {
+            List<Dictionary<string, object>> Ret = null;
+            switch (mode)
+            {
+                case CourseProviderContract.MODE_STUDENT:
+                    Ret = GetAllUser<Student>();
+                    break;
+                case CourseProviderContract.MODE_TEACHER:
+                    Ret = GetAllUser<Teacher>();
+                    break;
+                case CourseProviderContract.MODE_MANAGER:
+                    Ret = GetAllUser<Manager>();
+                    break;
+                default: break;
+            }
+
+            return Ret;
+        }
 
         /// <summary>
         /// Try to match the user with password in database
@@ -190,6 +211,36 @@ namespace CourseServer.Repositories
                     break;
                 default: break;
             }
+        }
+
+        private List<Dictionary<string, object>> GetAllUser<TEntity>() where TEntity : UserEntity
+        {
+            List<Dictionary<string, object>> Ret = null;
+
+            using (var context = GetDbContext())
+            {
+                DbSet<TEntity> dbSet = context.Set<TEntity>();
+                if (dbSet.Count() > 0)
+                {
+                    Ret = new List<Dictionary<string, object>>(dbSet.Count());
+
+                    Dictionary<string, object> userinfo;
+                    foreach (var user in dbSet)
+                    {
+                        userinfo = new Dictionary<string, object>();
+                        userinfo.Add("Id", user.Id);
+                        userinfo.Add("Email", user.Email);
+                        userinfo.Add("Avatar", user.Avatar);
+                        userinfo.Add("Name", user.Name);
+                        userinfo.Add("Cellphone", user.Cellphone);
+                        userinfo.Add("CreatedAt", user.CreatedAt);
+
+                        Ret.Add(userinfo);
+                    }
+                }
+            }
+
+            return Ret;
         }
 
         private void Update<TEntity>(UserEntity user) where TEntity : UserEntity
