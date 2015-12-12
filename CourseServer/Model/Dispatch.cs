@@ -11,9 +11,8 @@ namespace CourseServer.Model
         public int Limit { get; set; }
 
         public int Current { get; set; }
-
-        [Index]
-        public short Weekday { get; set; }
+        
+        public string Weekday { get; set; }
 
         [Index]
         public DateTime At { get; set; }
@@ -24,7 +23,7 @@ namespace CourseServer.Model
 
         public virtual Course Course { get; set; }
 
-        public int TeacherId { get; set; }
+        public int? TeacherId { get; set; }
 
         public virtual Teacher Teacher { get; set; }
 

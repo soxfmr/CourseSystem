@@ -27,7 +27,7 @@ namespace CourseServer.Repositories.Advance.Tests
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
             DispatchManageRepository repo = new DispatchManageRepository();
-            Assert.AreEqual(true, repo.Create(2, DateTime.Now, 20, 3, 3, 1));
+            Assert.AreEqual(true, repo.Create("2", DateTime.Now, 20, 3, 3, 1));
         }
 
         [TestMethod()]
@@ -45,7 +45,7 @@ namespace CourseServer.Repositories.Advance.Tests
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
             DispatchManageRepository repo = new DispatchManageRepository();
-            Assert.AreEqual(true, repo.Update(2, 2, DateTime.Now, 20, 3, 1, true));
+            Assert.AreEqual(true, repo.Update(2, "2", DateTime.Now, 20, 3, 1, true));
         }
     }
 }

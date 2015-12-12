@@ -82,7 +82,7 @@ namespace CourseServer.Tests
                 courses.Add(courseCS);
 
                 var classrooms = db.Set<Classroom>();
-                Classroom classroom = new Classroom { Number = 404, Location = "Little place" };
+                Classroom classroom = new Classroom {  Location = "Little place" };
                 classrooms.Add(classroom);
 
                 var dispatches = db.Set<Dispatch>();
@@ -92,7 +92,7 @@ namespace CourseServer.Tests
                     Course = course,
                     Enable = true,
                     Current = 0,
-                    Weekday = 1,
+                    Weekday = "1",
                     At = DateTime.Now,
                     Limit = 50,
                     Classroom = classroom
@@ -103,7 +103,7 @@ namespace CourseServer.Tests
                     Course = courseCS,
                     Enable = true,
                     Current = 0,
-                    Weekday = 2,
+                    Weekday = "2",
                     At = DateTime.Now,
                     Limit = 100,
                     Classroom = classroom

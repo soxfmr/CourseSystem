@@ -27,7 +27,7 @@ namespace CourseServer.Repositories.Tests
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
             ClassroomRepository repo = new ClassroomRepository();
-            Assert.IsTrue(repo.Create("GameRoom", 233));
+            Assert.IsTrue(repo.Create("GameRoom"));
         }
 
         [TestMethod()]
@@ -45,7 +45,7 @@ namespace CourseServer.Repositories.Tests
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
             ClassroomRepository repo = new ClassroomRepository();
-            Assert.IsTrue(repo.Update(2, "GameRoom", 244));
+            Assert.IsTrue(repo.Update(2, "GameRoom"));
         }
     }
 }

@@ -33,9 +33,7 @@ namespace CourseServer.Repositories.Advance
                     dispatchInfo.Add("Id", dispatch.Id);
                     dispatchInfo.Add("Name", dispatch.Course.Name);
                     dispatchInfo.Add("Description", dispatch.Course.Description);
-                    dispatchInfo.Add("Location", string.Format("%s %s", 
-                        dispatch.Classroom.Location,
-                        dispatch.Classroom.Number));
+                    dispatchInfo.Add("Location", dispatch.Classroom.Location);
                     dispatchInfo.Add("TeacherName", dispatch.Teacher.Name);
                     dispatchInfo.Add("Weekday", dispatch.Weekday);
                     dispatchInfo.Add("At", dispatch.At);
@@ -49,7 +47,7 @@ namespace CourseServer.Repositories.Advance
             return Ret;
         }
 
-        public bool Create(int weekday, DateTime at,
+        public bool Create(string weekday, DateTime at,
             int limit,
             int teacherId, int courseId, int roomId)
         {
@@ -71,7 +69,7 @@ namespace CourseServer.Repositories.Advance
 
                 DbSet<Dispatch> dispatches = context.Set<Dispatch>();
                 Dispatch dispatch = new Dispatch() { Course = course, Teacher = teacher,
-                    Weekday = (short) weekday, At = at, Limit = limit, Enable = true,
+                    Weekday = weekday, At = at, Limit = limit, Enable = true,
                     Classroom = classroom};
 
                 dispatches.Add(dispatch);
@@ -106,7 +104,7 @@ namespace CourseServer.Repositories.Advance
         }
 
         public bool Update(int id, 
-            int weekday, DateTime at,
+            string weekday, DateTime at,
             int limit,
             int teacherId, int roomId, bool enable)
         {
@@ -127,7 +125,7 @@ namespace CourseServer.Repositories.Advance
                     return bRet;                    
                 }
 
-                dispatch.Weekday = (short) weekday;
+                dispatch.Weekday = weekday;
                 dispatch.At = at;
                 dispatch.Limit = limit;
                 dispatch.Teacher = teacher;

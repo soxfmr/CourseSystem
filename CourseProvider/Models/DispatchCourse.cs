@@ -78,9 +78,9 @@ namespace CourseProvider.Models
             }
         }
 
-        private int weekday;
+        private string weekday;
 
-        public int Weekday {
+        public string Weekday {
             get
             {
                 return weekday;

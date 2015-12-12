@@ -12,8 +12,6 @@ namespace CourseServer.Model
     {
         public string Location { get; set; }
 
-        public int Number { get; set; }
-
         public virtual IList<Dispatch> Dispatches { get; set; }
     }
 }

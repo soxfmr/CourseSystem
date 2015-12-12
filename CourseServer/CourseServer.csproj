@@ -36,7 +36,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -67,6 +67,10 @@
     <Compile Include="Contract\IDispatcher.cs" />
     <Compile Include="Contract\IRouteBuilder.cs" />
     <Compile Include="Controllers\AbsenceController.cs" />
+    <Compile Include="Controllers\Advance\AbsenceManageController.cs" />
+    <Compile Include="Controllers\Advance\AttendanceManageController.cs" />
+    <Compile Include="Controllers\Advance\ClassroomController.cs" />
+    <Compile Include="Controllers\Advance\DispatchManageController.cs" />
     <Compile Include="Controllers\Advance\MajorController.cs" />
     <Compile Include="Controllers\Advance\UserManagerController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
@@ -124,6 +128,7 @@
     <Compile Include="Model\PasswordReset.cs" />
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\RolePermission.cs" />
+    <Compile Include="Model\SystemSettings.cs" />
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Repositories\AbsenceReasonRepository.cs" />

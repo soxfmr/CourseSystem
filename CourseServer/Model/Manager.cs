@@ -12,7 +12,7 @@ namespace CourseServer.Model
             Mode = CourseProviderContract.MODE_MANAGER;
         }
 
-        public int RoleId { get; set; }
+        public int? RoleId { get; set; }
 
         public virtual Role Role { get; set; }
     }

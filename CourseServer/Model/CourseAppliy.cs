@@ -18,7 +18,7 @@ namespace CourseServer.Model
 
         public uint Limit { get; set; }
                 
-        public short Weekday { get; set; }
+        public string Weekday { get; set; }
         
         public DateTime At { get; set; }
 

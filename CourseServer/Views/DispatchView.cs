@@ -24,7 +24,7 @@ namespace CourseServer.Views
                 obj.Add(new JProperty("TeacherName", dispatch.Teacher.Name));
                 obj.Add(new JProperty("Weekday", dispatch.Weekday));
                 obj.Add(new JProperty("At", dispatch.At));
-                obj.Add(new JProperty("Location", dispatch.Classroom.Location + " " + dispatch.Classroom.Number));
+                obj.Add(new JProperty("Location", dispatch.Classroom.Location));
                 obj.Add(new JProperty("Limit", dispatch.Limit));
                 obj.Add(new JProperty("Current", dispatch.Current));
 

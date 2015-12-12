@@ -29,7 +29,6 @@ namespace CourseServer.Repositories
                     roomInfo = new Dictionary<string, object>();
                     roomInfo.Add("Id", room.Id);
                     roomInfo.Add("Location", room.Location);
-                    roomInfo.Add("Number", room.Number);
 
                     Ret.Add(roomInfo);
                 }
@@ -38,13 +37,13 @@ namespace CourseServer.Repositories
             return Ret;
         }
 
-        public bool Create(string location, int number)
+        public bool Create(string location)
         {
             bool bRet = false;
             using (var context = GetDbContext())
             {
                 DbSet<Classroom> classrooms = context.Set<Classroom>();
-                Classroom room = new Classroom() { Location = location, Number = number };
+                Classroom room = new Classroom() { Location = location };
 
                 classrooms.Add(room);
 
@@ -77,7 +76,7 @@ namespace CourseServer.Repositories
             return bRet;
         }
 
-        public bool Update(int id, string location, int number)
+        public bool Update(int id, string location)
         {
             bool bRet = false;
 
@@ -89,7 +88,6 @@ namespace CourseServer.Repositories
                 if (room != null)
                 {
                     room.Location = location;
-                    room.Number = number;
 
                     context.SaveChanges();
 
