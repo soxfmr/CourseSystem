@@ -11,7 +11,7 @@ namespace CourseManager.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         // Default mode to the student client
-        public const int MODE_LOGIN = CourseProviderContract.MODE_TEACHER;
+        public const int MODE_LOGIN = CourseProviderContract.MODE_MANAGER;
 
         public string Username { get; set; }
 

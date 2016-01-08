@@ -87,6 +87,9 @@
     <Compile Include="AttendanceView.xaml.cs">
       <DependentUpon>AttendanceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClassroomView.xaml.cs">
+      <DependentUpon>ClassroomView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CourseView.xaml.cs">
       <DependentUpon>CourseView.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,7 @@
     <Compile Include="ViewModels\AbsenceViewModel.cs" />
     <Compile Include="ViewModels\AttendanceComposeViewModel.cs" />
     <Compile Include="ViewModels\AttendanceViewModel.cs" />
+    <Compile Include="ViewModels\ClassroomViewModel.cs" />
     <Compile Include="ViewModels\DispatchCourseViewModel.cs" />
     <Compile Include="ViewModels\FeedbackViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -121,6 +125,10 @@
     <Page Include="AttendanceView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClassroomView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CourseView.xaml">
       <Generator>MSBuild:Compile</Generator>

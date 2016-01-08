@@ -40,28 +40,34 @@ namespace CourseManager.ViewModels
         {
             AttendanceViewModel attendanceCourseViewModel = new AttendanceViewModel(this, SessionId);
             AbsenceViewModel absenceViewModel = new AbsenceViewModel(SessionId);
-
+            
             AddChildView("profile", new ViewModelRelationship(new ProfileViewModel(this, SessionId), new ProfileView()));
+            /*
             AddChildView("course", new ViewModelRelationship(new DispatchCourseViewModel(SessionId), new CourseView()));
             AddChildView("attendance", new ViewModelRelationship(attendanceCourseViewModel, new AttendanceView()));
             AddChildView("absence", new ViewModelRelationship(absenceViewModel, new AbsenceView()));
 
-            AddChildView("about", new ViewModelRelationship(new AboutViewModel(), new AboutView()));
-            AddChildView("logout", new ViewModelRelationship(new LogoutViewModel(this, SessionId), null));
-
             attendanceCourseViewModel.AddChildView("attendanceCompose", new ViewModelRelationship(
                 new AttendanceComposeViewModel(this, ChildViewList["attendance"], SessionId),
                 new AttendanceComposeView()));
+            */
+            AddChildView("about", new ViewModelRelationship(new AboutViewModel(), new AboutView()));
+            AddChildView("logout", new ViewModelRelationship(new LogoutViewModel(this, SessionId), null));
 
             /*
             * Profile, User Management, Course, Dispatch, Major, Attendance (Without pagination and catalog)
             * Absence (Without pagination and catalog)
-            */
-            MenuItemList = new List<MenuItem>();
-            MenuItemList.Add(new MenuItem { Title = "个人信息", Icon = IconResources.ICON_USER, Relationship = ChildViewList["profile"] });
             MenuItemList.Add(new MenuItem { Title = "课程表", Icon = IconResources.ICON_COURSE, Relationship = ChildViewList["course"] });
             MenuItemList.Add(new MenuItem { Title = "课堂考勤", Icon = IconResources.ICON_ATTENDANCE, Relationship = ChildViewList["attendance"] });
             MenuItemList.Add(new MenuItem { Title = "请假条审核", Icon = IconResources.ICON_ABSENCE, Relationship = ChildViewList["absence"] });
+            */
+            MenuItemList = new List<MenuItem>();
+            MenuItemList.Add(new MenuItem { Title = "个人信息", Icon = IconResources.ICON_USER, Relationship = ChildViewList["profile"] });
+            // Classroom
+            // Major
+            // Course
+            // User
+            // Dispatch
             MenuItemList.Add(null);
             MenuItemList.Add(new MenuItem { Title = "关于", Icon = IconResources.ICON_ABOUT, Relationship = ChildViewList["about"] });
             MenuItemList.Add(new MenuItem { Title = "退出", Icon = IconResources.ICON_LOGOUT, Relationship = ChildViewList["logout"] });

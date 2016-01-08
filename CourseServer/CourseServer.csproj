@@ -67,8 +67,6 @@
     <Compile Include="Contract\IDispatcher.cs" />
     <Compile Include="Contract\IRouteBuilder.cs" />
     <Compile Include="Controllers\AbsenceController.cs" />
-    <Compile Include="Controllers\Advance\AbsenceManageController.cs" />
-    <Compile Include="Controllers\Advance\AttendanceManageController.cs" />
     <Compile Include="Controllers\Advance\ClassroomController.cs" />
     <Compile Include="Controllers\Advance\DispatchManageController.cs" />
     <Compile Include="Controllers\Advance\MajorController.cs" />
