@@ -1,6 +1,8 @@
 ﻿using CourseServer.Framework;
 using CourseServer.Repositories;
+using CourseServer.Utils;
 using CourseServer.Views;
+using System;
 
 namespace CourseServer.Controllers.Advance
 {
@@ -47,14 +49,13 @@ namespace CourseServer.Controllers.Advance
         }
 
         public string Update(int id, int mode, 
-            string name, string avatar, string cellphone, 
-            string newPwd, string pwdConfirm)
+            string name, string avatar, string cellphone)
         {
             Validator validator = new Validator();
             // Validate the user input here.
-            if (!validator.Make(new string[] { id + "", mode + "", name, newPwd, pwdConfirm },
-                new string[] { "required", "required", "required", "match:newPassword_confirmation", "" },
-                new string[] { "userId", "mode", "username", "newPassword", "newPassword_confirmation" }))
+            if (!validator.Make(new string[] { id + "", mode + "", name},
+                new string[] { "required", "required", "required" },
+                new string[] { "userId", "mode", "username" }))
             {
                 return view.Error(validator.GetDetail());
             }
@@ -62,7 +63,7 @@ namespace CourseServer.Controllers.Advance
             bool bRet = false;
             if (userRepo.Exists(id, mode))
             {
-                userRepo.Update(userRepo.CurrentUser, name, avatar, cellphone, newPwd);
+                userRepo.Update(userRepo.CurrentUser, name, avatar, cellphone, null);
                 bRet = true;
             }
 
@@ -83,6 +84,22 @@ namespace CourseServer.Controllers.Advance
             userRepo.Destroy(id, mode);
 
             return view.Success();
+        }
+
+        public string ResetPassword(int id, int mode)
+        {
+            Validator validator = new Validator();
+            if (!validator.Make(new string[] { id + "", mode + "" },
+                new string[] { "required", "required" },
+                new string[] { "userId", "mode" }))
+            {
+                return view.Error(validator.GetDetail());
+            }
+
+            string pwd = Guard.GenerateRandomPassword();
+            bool bRet = userRepo.ResetPassword(id, pwd, mode);
+
+            return bRet ? view.Show(pwd) : view.Error();
         }
 
         public string Profile(int id, int mode)

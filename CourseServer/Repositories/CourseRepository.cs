@@ -13,12 +13,37 @@ namespace CourseServer.Repositories
         /// <summary>
         /// Retrieve all of courses from database without pagination
         /// </summary>
-        public List<Course> All()
+        public List<Dictionary<string, object>> All()
         {
-            using(var context = GetDbContext())
+            List<Dictionary<string, object>> Ret = null;
+            using (var context = GetDbContext())
             {
-                return All<Course>(context, "Major", "Teacher");
+                DbSet<Course> courses = context.Set<Course>();
+
+                if (courses.Count() <= 0)
+                {
+                    return Ret;
+                }
+
+                Dictionary<string, object> courseInfo;
+                Ret = new List<Dictionary<string, object>>(courses.Count());
+
+                var courseList = courses.ToList();
+
+                foreach (var course in courseList)
+                {
+                    courseInfo = new Dictionary<string, object>();
+                    courseInfo.Add("Id", course.Id);
+                    courseInfo.Add("Name", course.Name);
+                    courseInfo.Add("Description", course.Description);
+                    courseInfo.Add("MajorId", course.Major.Id);
+                    courseInfo.Add("Major", course.Major.Name);
+
+                    Ret.Add(courseInfo);
+                }
             }
+
+            return Ret;
         }
 
         public bool Create(string name, string description, int majorId, int creatorId)
@@ -50,8 +75,9 @@ namespace CourseServer.Repositories
             return bRet;
         }
 
-        public void Remove(int id)
+        public bool Destroy(int id)
         {
+            bool bRet = false;
             using (var context = GetDbContext())
             {
                 DbSet<Course> courses = context.Set<Course>();
@@ -63,8 +89,12 @@ namespace CourseServer.Repositories
                     courses.Remove(course);
 
                     context.SaveChanges();
-                }                
+                }
+
+                bRet = true;
             }
+
+            return bRet;
         }
 
         public bool Update(int id, string name, string description, int majorId)

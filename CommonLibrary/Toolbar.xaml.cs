@@ -20,6 +20,30 @@ namespace CommonLibrary
     /// </summary>
     public partial class Toolbar : UserControl
     {
+        public object RefershCommandParameter
+        {
+            get
+            {
+                return GetValue(RefershCommandParameterProperty);
+            }
+            set
+            {
+                SetValue(RefershCommandParameterProperty, value);
+            }
+        }
+
+        public object BackCommandParameter
+        {
+            get
+            {
+                return GetValue(BackCommandParameterProperty);
+            }
+            set
+            {
+                SetValue(BackCommandParameterProperty, value);
+            }
+        }
+
         public ICommand BackCommand
         {
             get
@@ -91,6 +115,10 @@ namespace CommonLibrary
                 SetValue(RefreshVisibilityProperty, value);
             }
         }
+
+        public static readonly DependencyProperty RefershCommandParameterProperty = DependencyProperty.Register("RefershCommandParameter", typeof(object), typeof(Toolbar));
+
+        public static readonly DependencyProperty BackCommandParameterProperty = DependencyProperty.Register("BackCommandParameter", typeof(object), typeof(Toolbar));
 
         public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(Toolbar));
 

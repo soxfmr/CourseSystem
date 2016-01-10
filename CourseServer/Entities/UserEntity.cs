@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourseServer.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +11,31 @@ namespace CourseServer.Entities
 {
     public class UserEntity : Model.Model
     {
-        public string Avatar { get; set; }
+        /// <summary>
+        /// That's ME :)
+        /// </summary>
+        private const string DEFAULT_AVATAR = "http://i.imgur.com/OBWaenZ.jpg";
+
+        public UserEntity()
+        {
+            Avatar = DEFAULT_AVATAR;
+        }
+
+        private string avatar;
+        public string Avatar
+        {
+            get
+            {
+                return avatar;
+            }
+            set
+            {
+                if (! TextUtils.isEmpty(value))
+                {
+                    avatar = value;
+                }
+            }
+        }
 
         [Required]
         public string Name { get; set; }

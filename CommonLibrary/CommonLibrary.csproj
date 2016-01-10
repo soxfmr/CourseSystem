@@ -91,9 +91,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\avatar.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="ProgressDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

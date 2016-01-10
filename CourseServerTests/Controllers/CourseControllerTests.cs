@@ -18,8 +18,6 @@ namespace CourseServer.Controllers.Tests
         {
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
             CourseController c = new CourseController();
-
-            string ret = c.Index();
         }
     }
 }

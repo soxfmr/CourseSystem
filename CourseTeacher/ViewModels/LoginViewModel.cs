@@ -49,6 +49,7 @@ namespace CourseTeacher.ViewModels
             }
             else
             {
+                DialogHelper.Close();
                 DialogHelper.Show("登陆失败，请检查账号密码是否正确");
             }
         }

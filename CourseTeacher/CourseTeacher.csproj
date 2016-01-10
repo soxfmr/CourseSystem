@@ -34,6 +34,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CourseTeacher.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CourseSystem.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MahApps.Metro, Version=1.1.3.234, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.1.3-ALPHA234\lib\net45\MahApps.Metro.dll</HintPath>
@@ -87,6 +93,7 @@
     <Compile Include="AttendanceView.xaml.cs">
       <DependentUpon>AttendanceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Config\DeployLoader.cs" />
     <Compile Include="CourseView.xaml.cs">
       <DependentUpon>CourseView.xaml</DependentUpon>
     </Compile>
@@ -181,10 +188,17 @@
       <Project>{6c69e7fb-0042-4404-b3e8-6665efa1b673}</Project>
       <Name>CommonLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ConfigurationLib\ConfigurationLib.csproj">
+      <Project>{d5154d2d-43b9-4d2c-8e5b-a4917c0a07cd}</Project>
+      <Name>ConfigurationLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CourseProvider\CourseProvider.csproj">
       <Project>{d02b03c7-ab4f-48f0-b063-30d946e15176}</Project>
       <Name>CourseProvider</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CourseSystem.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

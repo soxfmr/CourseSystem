@@ -1,4 +1,5 @@
-﻿using CourseServer.Contract;
+﻿using ConfigurationLib;
+using CourseServer.Contract;
 using CourseServer.Framework;
 using CourseServer.Middlewares;
 using CourseServer.Utils;

@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="CourseManager.ClassroomComposeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CourseManager"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:common="clr-namespace:CommonLibrary;assembly=CommonLibrary"
+             mc:Ignorable="d" 
+             Style="{ StaticResource VisualComponent }" Padding="0"
+             Name="_this"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <common:Toolbar Grid.Row="0" Title="添加课室" PositionAdjustment="1"
+                       RefreshVisibility="Hidden"
+                       BackCommand="{Binding DataContext.BackToPreviousCommand, ElementName=_this}" />
+
+        <StackPanel Margin="16" Grid.Row="1">
+            <TextBox Margin="0 16 0 8" 
+                     wpf:TextFieldAssist.Hint="课室地点" Text="{Binding Location}" Style="{ StaticResource VisualTextBox}"/>
+
+            <Button Margin="0 16 0 0" Style="{ StaticResource VisualButton }" Command="{Binding CreateCommand}" 
+                    HorizontalAlignment="Left">提交</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

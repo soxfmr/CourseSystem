@@ -37,6 +37,20 @@ namespace CourseServer.Repositories
             return Ret;
         }
 
+        public bool ResetPassword(int id, string pwd, int mode)
+        {
+            if (! Exists(id, mode))
+            {
+                return false;   
+            }
+            // Reset to the specified password
+            CurrentUser.Password = Guard.Encrypt(pwd);
+            // Update to the database
+            Update(CurrentUser);
+
+            return true;
+        }
+
         /// <summary>
         /// Try to match the user with password in database
         /// </summary>
@@ -234,6 +248,7 @@ namespace CourseServer.Repositories
                         userinfo.Add("Name", user.Name);
                         userinfo.Add("Cellphone", user.Cellphone);
                         userinfo.Add("CreatedAt", user.CreatedAt);
+                        userinfo.Add("Mode", user.Mode);
 
                         Ret.Add(userinfo);
                     }

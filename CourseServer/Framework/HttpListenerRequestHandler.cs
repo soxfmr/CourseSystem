@@ -23,7 +23,8 @@ namespace CourseServer.Framework
         public override string Format()
         {
             Stream iStream = request.InputStream;
-            Encoding encoding = request.ContentEncoding;
+            // Encoding encoding = request.ContentEncoding;
+            Encoding encoding = null;
 
             if (iStream == null || !iStream.CanRead)
                 return null;
@@ -36,7 +37,6 @@ namespace CourseServer.Framework
             char[] buffer = new char[1024];
 
             StringBuilder sBuilder = new StringBuilder();
-
             StreamReader reader = null;
 
             try

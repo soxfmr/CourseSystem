@@ -81,8 +81,6 @@
     <Compile Include="CourseServer.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Events\HandleEventArgs.cs" />
-    <Compile Include="ConfigurationLoader.cs" />
-    <Compile Include="Framework\DatabaseInfo.cs" />
     <Compile Include="Framework\DbContextHelper.cs" />
     <Compile Include="Framework\DispatchSource.cs" />
     <Compile Include="Framework\FileSystemCacheDriver.cs" />
@@ -98,7 +96,6 @@
     <Compile Include="Framework\RouteHandlerInfo.cs" />
     <Compile Include="Framework\RouteInfo.cs" />
     <Compile Include="Framework\Server.cs" />
-    <Compile Include="Framework\ServerInfo.cs" />
     <Compile Include="Framework\Session.cs" />
     <Compile Include="Framework\SessionInfo.cs" />
     <Compile Include="Framework\Validator.cs" />
@@ -129,6 +126,7 @@
     <Compile Include="Model\SystemSettings.cs" />
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Model\Student.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AbsenceReasonRepository.cs" />
     <Compile Include="Repositories\AbsenceRepository.cs" />
     <Compile Include="Repositories\Advance\AbsenceManageRepository.cs" />
@@ -141,14 +139,12 @@
     <Compile Include="Repositories\MajorRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Framework\UserConfiguration.cs" />
     <Compile Include="Utils\Dumper.cs" />
     <Compile Include="Utils\GenericUtils.cs" />
     <Compile Include="Utils\Guard.cs" />
     <Compile Include="Utils\PlatformCompact.cs" />
     <Compile Include="Utils\TextUtils.cs" />
     <Compile Include="Views\AbsenceView.cs" />
-    <Compile Include="Views\CourseView.cs" />
     <Compile Include="Views\DispatchView.cs" />
     <Compile Include="Views\GenericView.cs" />
     <Compile Include="Views\LoginView.cs" />
@@ -192,10 +188,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\ConfigurationLib\ConfigurationLib.csproj">
+      <Project>{d5154d2d-43b9-4d2c-8e5b-a4917c0a07cd}</Project>
+      <Name>ConfigurationLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CourseProvider\CourseProvider.csproj">
       <Project>{d02b03c7-ab4f-48f0-b063-30d946e15176}</Project>
       <Name>CourseProvider</Name>

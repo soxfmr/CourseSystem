@@ -35,9 +35,6 @@
                             <Grid.Clip>
                                 <EllipseGeometry Center="45,45" RadiusX="40" RadiusY="40" />
                             </Grid.Clip>
-                            <Image Grid.Column="0" Source="Resources\avatar.jpg" Stretch="UniformToFill" 
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                               VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <Image Grid.Column="0" Source="{Binding UserProfile.Avatar}" Stretch="UniformToFill" 
                                RenderOptions.BitmapScalingMode="HighQuality"
                                VerticalAlignment="Center" HorizontalAlignment="Center" />

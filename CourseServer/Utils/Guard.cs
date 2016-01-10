@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DevOne.Security.Cryptography.BCrypt;
+using System.Security.Cryptography;
 
 namespace CourseServer.Utils
 {
     public class Guard
     {
+        private const string TABLE = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+
         public static string Encrypt(string origin)
         {
             origin = Mixed(origin);
@@ -21,6 +24,22 @@ namespace CourseServer.Utils
             origin = Mixed(origin);
 
             return BCryptHelper.CheckPassword(origin, hashed);
+        }
+
+        public static string GenerateRandomPassword()
+        {
+            StringBuilder sBuilder = new StringBuilder();
+
+            char c = '0';
+            Random random = new Random();
+            for (int i = 0; i < 8; i++)
+            {
+                c = TABLE[random.Next(TABLE.Length)];
+
+                sBuilder.Append(c);
+            }
+
+            return sBuilder.ToString();
         }
 
         private static string Mixed(string arg0)

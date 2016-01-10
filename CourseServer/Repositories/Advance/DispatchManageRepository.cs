@@ -32,12 +32,12 @@ namespace CourseServer.Repositories.Advance
                     dispatchInfo = new Dictionary<string, object>();
                     dispatchInfo.Add("Id", dispatch.Id);
                     dispatchInfo.Add("Name", dispatch.Course.Name);
-                    dispatchInfo.Add("Description", dispatch.Course.Description);
+                    dispatchInfo.Add("ClassroomId", dispatch.ClassroomId);
                     dispatchInfo.Add("Location", dispatch.Classroom.Location);
+                    dispatchInfo.Add("TeacherId", dispatch.TeacherId);
                     dispatchInfo.Add("TeacherName", dispatch.Teacher.Name);
                     dispatchInfo.Add("Weekday", dispatch.Weekday);
                     dispatchInfo.Add("At", dispatch.At);
-                    dispatchInfo.Add("Current", dispatch.Current);
                     dispatchInfo.Add("Limit", dispatch.Limit);
 
                     Ret.Add(dispatchInfo);

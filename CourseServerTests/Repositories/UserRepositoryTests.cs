@@ -94,5 +94,15 @@ namespace CourseServer.Repositories.Tests
 
             Assert.AreEqual(2, repo.GetAllUserByMode(0).Count);
         }
+
+        [TestMethod()]
+        public void ResetPasswordTest()
+        {
+            DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
+
+            UserRepository repo = new UserRepository();
+
+            //Assert.AreEqual(true, repo.ResetPassword("yuge@gmail.com", "bullshit", 0));
+        }
     }
 }

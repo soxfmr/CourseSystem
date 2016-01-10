@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="CourseManager.DispatchComposeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CourseManager"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:common="clr-namespace:CommonLibrary;assembly=CommonLibrary"
+             mc:Ignorable="d" 
+             Style="{ StaticResource VisualComponent }" Padding="0"
+             Name="_this"
+             d:DesignHeight="500" d:DesignWidth="500">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <common:Toolbar Grid.Row="0" Title="课程分配" PositionAdjustment="1"
+                       RefreshVisibility="Hidden"
+                       BackCommand="{Binding DataContext.BackToPreviousCommand, ElementName=_this}" />
+
+        <StackPanel Margin="16" Grid.Row="1">
+            <ComboBox Name="CBoxCourseList" wpf:TextFieldAssist.Hint="课程" ItemsSource="{Binding refCourseViewModel.CourseList}" 
+                      SelectedIndex="0" Margin="0 16 0 8" 
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                  DisplayMemberPath="Name" SelectedValuePath="Id" MinWidth="260" HorizontalAlignment="Left"/>
+            
+            <ComboBox Name="CBoxTeacherList" wpf:TextFieldAssist.Hint="任课教师" ItemsSource="{Binding TeacherList}" 
+                      SelectedIndex="0" Margin="0 16 0 8" 
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                  DisplayMemberPath="Name" SelectedValuePath="Id" MinWidth="260" HorizontalAlignment="Left"/>
+
+            <ComboBox Name="CBoxRoomList" wpf:TextFieldAssist.Hint="课室" ItemsSource="{Binding refClassroomViewModel.ClassroomList}" 
+                      SelectedIndex="0" Margin="0 16 0 8" 
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                  DisplayMemberPath="Location" SelectedValuePath="Id" MinWidth="260" HorizontalAlignment="Left"/>
+
+            <TextBox Margin="0 16 0 8" 
+                     wpf:TextFieldAssist.Hint="上限人数" Text="{Binding Limit}" Style="{ StaticResource VisualTextBox}"/>
+
+            <Label Margin="0 16 0 8">上课时间</Label>
+            <StackPanel Orientation="Horizontal" Margin="0 16 0 8">
+                <CheckBox Name="CheckBoxMon" Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                    星期一
+                </CheckBox>
+                <CheckBox Name="CheckBoxTues" Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                    星期二
+                </CheckBox>
+                <CheckBox Name="CheckBoxWed" Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                    星期三
+                </CheckBox>
+                <CheckBox Name="CheckBoxThur" Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                    星期四
+                </CheckBox>
+                <CheckBox Name="CheckBoxFri" Style="{StaticResource MaterialDesignCheckBox}" Margin="0 0 8 8" VerticalAlignment="Center" IsChecked="True">
+                    星期五
+                </CheckBox>
+            </StackPanel>
+
+            <wpf:TimePicker Name="TimePickerAt" Margin="0 16 0 8" 
+                            wpf:TextFieldAssist.Hint="具体时间" />
+
+            <Button Margin="0 16 0 0" Style="{ StaticResource VisualButton }" Command="{Binding CreateCommand}"
+                    HorizontalAlignment="Left">提交</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -3,53 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:common="clr-namespace:CommonLibrary;assembly=CommonLibrary"
+             xmlns:local="clr-namespace:CourseManager"
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:common="clr-namespace:CommonLibrary;assembly=CommonLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="582" d:DesignWidth="708"
+             Name="_this"
              Style="{ StaticResource VisualComponent }" Padding="0"
-             Name="_this">
-    
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DataGrid.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-    <StackPanel>
-        <common:Toolbar Title="课程表" PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
+        <common:Toolbar Title="课程管理" PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
 
-        <StackPanel>
-            <DataGrid Background="#FFF" Margin="0 8 0 0" ItemsSource="{Binding DispatchCourseList, 
+        <Grid Grid.Row="1" Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            Command="{Binding SelectAllCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    全选
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="8 0 0 0"
+                            Command="{Binding ReverseCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    反选
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            Command="{Binding RemoveCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    删除选中
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="8 0 0 0"
+                            Command="{Binding UpdateSelectedCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    提交选中修改
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            Command="{Binding ShowComposeViewCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    添加选修课程
+                </Button>
+            </StackPanel>
+
+            <DataGrid Grid.Row="1" Background="#FFF" Margin="0 8 0 0" ItemsSource="{Binding CourseList, 
                      UpdateSourceTrigger=PropertyChanged}"
                       CanUserSortColumns="True" CanUserReorderColumns="False" CanUserAddRows="False" 
                       CanUserDeleteRows="False" AutoGenerateColumns="False"
                       wpf:DataGridAssist.CellPadding="13 8 8 8" wpf:DataGridAssist.ColumnHeaderPadding="8">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" IsReadOnly="True"
+                    <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                                                ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}" />
+                    <wpf:MaterialDataGridTextColumn Binding="{Binding Name}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"
                                             Header="课程名称" />
-                    <DataGridTextColumn Binding="{Binding TeacherName}" IsReadOnly="True"
-                                            Header="讲师" />
-                    <DataGridTextColumn IsReadOnly="True" 
-                                        Header="上课时间" >
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding StringFormat="{}{0:t} 星期 {1}">
-                                <Binding Path="At" />
-                                <Binding Path="Weekday" />
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Location}" IsReadOnly="True"
-                                            Header="教室" />
-                    <DataGridTextColumn Binding="{Binding Limit}" IsReadOnly="True"
-                                            Header="人数上限" />
-                    <DataGridTextColumn Binding="{Binding Current}" IsReadOnly="True"
-                                            Header="当前人数" />
+                    <wpf:MaterialDataGridTextColumn Binding="{Binding Description}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"
+                                            Header="课程描述" />
                 </DataGrid.Columns>
             </DataGrid>
-        </StackPanel>
-    </StackPanel>
+        </Grid>
+    </Grid>
 </UserControl>

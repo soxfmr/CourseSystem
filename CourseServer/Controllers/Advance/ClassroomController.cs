@@ -1,4 +1,5 @@
-﻿using CourseServer.Repositories;
+﻿using CourseServer.Framework;
+using CourseServer.Repositories;
 using CourseServer.Views;
 using System;
 using System.Collections.Generic;
@@ -19,24 +20,62 @@ namespace CourseServer.Controllers.Advance
             classroomRepo = new ClassroomRepository();
         }
 
-        public string Store()
-        {
-            return null;
-        }
-
-        public string Destroy()
-        {
-            return null;
-        }
-
         public string All()
         {
-            return null;
+            var result = classroomRepo.GetAll();
+
+            return view.Show(result);
         }
 
-        public string Update()
+        public string Store(string location)
         {
-            return null;
+            Validator validator = new Validator();
+
+            // Validate the user input here.
+            if (!validator.Make(new string[] { location },
+                new string[] { "required" },
+                new string[] { "location" }))
+            {
+                return view.Error(validator.GetDetail());
+            }
+
+            bool bRet = classroomRepo.Create(location);
+
+            return bRet ? view.Success() : view.Error();
+        }
+
+        public string Destroy(int id)
+        {
+            Validator validator = new Validator();
+
+            // Validate the user input here.
+            if (!validator.Make(new string[] { id + "" },
+                new string[] { "required" },
+                new string[] { "id" }))
+            {
+                return view.Error(validator.GetDetail());
+            }
+
+            bool bRet = classroomRepo.Destroy(id);
+
+            return bRet ? view.Success() : view.Error();
+        }
+
+        public string Update(int id, string location)
+        {
+            Validator validator = new Validator();
+
+            // Validate the user input here.
+            if (!validator.Make(new string[] { id + "", location },
+                new string[] { "required", "required" },
+                new string[] { "id", "location" }))
+            {
+                return view.Error(validator.GetDetail());
+            }
+
+            bool bRet = classroomRepo.Update(id, location);
+
+            return bRet ? view.Success() : view.Error();
         }
     }
 }

@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace CourseManager
 {
     /// <summary>
-    /// Course.xaml 的交互逻辑
+    /// CourseView.xaml 的交互逻辑
     /// </summary>
     public partial class CourseView : UserControl
     {

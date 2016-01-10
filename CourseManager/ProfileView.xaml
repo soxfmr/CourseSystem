@@ -26,7 +26,8 @@
         </Grid.RowDefinitions>
 
         <common:Toolbar Title="个人信息"
-                       PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
+                       PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" 
+                       BackVisibility="Hidden" />
 
         <Grid Grid.Row="1" Margin="16">
             <Grid.RowDefinitions>

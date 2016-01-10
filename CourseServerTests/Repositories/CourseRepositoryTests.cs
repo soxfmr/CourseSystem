@@ -19,9 +19,9 @@ namespace CourseServer.Repositories.Tests
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
             CourseRepository repo = new CourseRepository();
-            List<Course> courseList = repo.All();
+            var result = repo.All();
 
-            Assert.AreEqual("电子系", courseList[0].Major.Name);
+            Assert.AreEqual(2, result.Count());
         }
 
         [TestMethod()]
@@ -40,8 +40,6 @@ namespace CourseServer.Repositories.Tests
             DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 8);
 
             CourseRepository repo = new CourseRepository();
-
-            repo.Remove(2);
         }
 
         [TestMethod()]

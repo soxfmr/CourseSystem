@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Builders\JSONRouteBuilderTests.cs" />
     <Compile Include="Controllers\AbsenceControllerTests.cs" />
+    <Compile Include="Controllers\Advance\ClassroomControllerTests.cs" />
     <Compile Include="Controllers\AttendanceControllerTests.cs" />
     <Compile Include="Controllers\CourseControllerTests.cs" />
     <Compile Include="Controllers\Deepth\TestController.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Repositories\UserRepositoryTests.cs" />
     <Compile Include="Utils\DumperTests.cs" />
     <Compile Include="Utils\GenericUtilsTests.cs" />
+    <Compile Include="Utils\GuardTests.cs" />
     <Compile Include="Views\DispatchViewTests.cs" />
   </ItemGroup>
   <ItemGroup>

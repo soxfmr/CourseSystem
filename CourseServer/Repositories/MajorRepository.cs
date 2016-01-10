@@ -28,6 +28,7 @@ namespace CourseServer.Repositories
                 {
                     majorInfo = new Dictionary<string, object>();
                     majorInfo.Add("Id", major.Id);
+                    majorInfo.Add("Name", major.Name);
                     majorInfo.Add("Description", major.Description);
 
                     Ret.Add(majorInfo);

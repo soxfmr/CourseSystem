@@ -16,7 +16,8 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Name="ButtonBack" Style="{DynamicResource MaterialDesignToolForegroundButton}"
-                    Command="{Binding BackCommand}" Visibility="{Binding BackVisibility}" Margin="0 0 8 0" 
+                    Command="{Binding BackCommand}" CommandParameter="{Binding BackCommandParameter}"
+                    Visibility="{Binding BackVisibility}" Margin="0 0 8 0" 
                             wpf:RippleAssist.IsCentered="True">
                     <Viewbox Margin="0 -8 0 0" Width="16" Height="16">
                         <Canvas Width="16" Height="16">
@@ -32,6 +33,7 @@
             </Grid>
             <Button Name="ButtonRefresh" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                    CommandParameter="{Binding RefershCommandParameter}"
                     Command="{Binding RefershCommand}" Visibility="{Binding RefreshVisibility}"
                             wpf:RippleAssist.IsCentered="True">
                 <Viewbox Margin="0 -8 0 0" Width="16" Height="16">

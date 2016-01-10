@@ -1,4 +1,5 @@
-﻿using CourseServer.Events;
+﻿using ConfigurationLib.Model;
+using CourseServer.Events;
 using CourseServer.Utils;
 using System;
 using System.IO;
@@ -31,8 +32,11 @@ namespace CourseServer.Framework
             if (serverInfo == null)
                 throw new ArgumentNullException("The ServerInfo should'n be null.");
 
-            if (TextUtils.isEmpty(serverInfo.Scheme) || serverInfo.Scheme != SCHEME_HTTP)
-                throw new ArgumentException("Invalid scheme for the server: " + serverInfo.Scheme); 
+            if (TextUtils.isEmpty(serverInfo.Scheme) || serverInfo.Scheme.ToLower() != SCHEME_HTTP &&
+                serverInfo.Scheme.ToLower() != SCHEME_HTTPS)
+            {
+                throw new ArgumentException("Invalid scheme for the server: " + serverInfo.Scheme);
+            }
             
             if (TextUtils.isEmpty(serverInfo.Hostname))
                 throw new ArgumentException("Invalid hostname for the server: " + 

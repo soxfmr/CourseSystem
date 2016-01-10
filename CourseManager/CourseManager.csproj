@@ -34,6 +34,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CourseManager.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CourseSystem.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MahApps.Metro, Version=1.1.3.243, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.1.3-ALPHA243\lib\net45\MahApps.Metro.dll</HintPath>
@@ -53,6 +59,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.1.3-ALPHA243\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -78,61 +86,88 @@
     <Compile Include="AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AbsenceView.xaml.cs">
-      <DependentUpon>AbsenceView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AttendanceComposeView.xaml.cs">
-      <DependentUpon>AttendanceComposeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AttendanceView.xaml.cs">
-      <DependentUpon>AttendanceView.xaml</DependentUpon>
+    <Compile Include="ClassroomComposeView.xaml.cs">
+      <DependentUpon>ClassroomComposeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ClassroomView.xaml.cs">
       <DependentUpon>ClassroomView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Config\DeployLoader.cs" />
+    <Compile Include="CourseComposeView.xaml.cs">
+      <DependentUpon>CourseComposeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CourseView.xaml.cs">
       <DependentUpon>CourseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DispatchComposeView.xaml.cs">
+      <DependentUpon>DispatchComposeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DispatchCourseView.xaml.cs">
+      <DependentUpon>DispatchCourseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MajorComposeView.xaml.cs">
+      <DependentUpon>MajorComposeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MajorView.xaml.cs">
+      <DependentUpon>MajorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SecurityComposeView.xaml.cs">
+      <DependentUpon>SecurityComposeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserComposeView.xaml.cs">
+      <DependentUpon>UserComposeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserLoginView.xaml.cs">
       <DependentUpon>UserLoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserManageView.xaml.cs">
+      <DependentUpon>UserManageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\AbsenceViewModel.cs" />
-    <Compile Include="ViewModels\AttendanceComposeViewModel.cs" />
-    <Compile Include="ViewModels\AttendanceViewModel.cs" />
+    <Compile Include="ViewModels\ClassroomComposeViewModel.cs" />
     <Compile Include="ViewModels\ClassroomViewModel.cs" />
-    <Compile Include="ViewModels\DispatchCourseViewModel.cs" />
-    <Compile Include="ViewModels\FeedbackViewModel.cs" />
+    <Compile Include="ViewModels\CourseComposeViewModel.cs" />
+    <Compile Include="ViewModels\CourseViewModel.cs" />
+    <Compile Include="ViewModels\DispatchComposeViewModel.cs" />
+    <Compile Include="ViewModels\DispatchManageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\LogoutViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MajorComposeViewModel.cs" />
+    <Compile Include="ViewModels\MajorViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\UserComposeViewModel.cs" />
+    <Compile Include="ViewModels\UserManageViewModel.cs" />
     <Page Include="AboutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="AbsenceView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="ClassroomComposeView.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="AttendanceComposeView.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="AttendanceView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="ClassroomView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CourseView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="CourseComposeView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CourseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DispatchComposeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DispatchCourseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -147,13 +182,33 @@
       <SubType>
       </SubType>
     </Compile>
+    <Page Include="MajorComposeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MajorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProfileView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="SecurityComposeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserComposeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserLoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -189,10 +244,17 @@
       <Project>{6c69e7fb-0042-4404-b3e8-6665efa1b673}</Project>
       <Name>CommonLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ConfigurationLib\ConfigurationLib.csproj">
+      <Project>{d5154d2d-43b9-4d2c-8e5b-a4917c0a07cd}</Project>
+      <Name>ConfigurationLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CourseProvider\CourseProvider.csproj">
       <Project>{d02b03c7-ab4f-48f0-b063-30d946e15176}</Project>
       <Name>CourseProvider</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CourseSystem.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

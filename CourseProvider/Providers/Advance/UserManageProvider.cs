@@ -12,6 +12,10 @@ namespace CourseProvider.Providers.Advance
     {
         public const int RC_GET_ALL = 0x1;
 
+        public const int RC_CREATE = 0x2;
+
+        public const int RC_RESET_PASSWORD = 0x3;
+
         public EventHandler<UserManageEventArgs> ProfileEvent;
 
         public void Create(string email, string user, string pass, 
@@ -25,7 +29,7 @@ namespace CourseProvider.Providers.Advance
             carrier.ParamList.Add("pass", pass);
             carrier.ParamList.Add("mode", mode);
 
-            Bridge.Connect(carrier);
+            Bridge.Connect(RC_CREATE, carrier);
         }
 
         public void Remove(int id, int mode, string sessionId)
@@ -39,17 +43,28 @@ namespace CourseProvider.Providers.Advance
             Bridge.Connect(carrier);
         }
 
-        public void Update(int id, int mode, string name, string avatar, string cellphone,
-            string newPwd, string pwdConfirm, string sessionId)
+        public void ResetPassword(int id, int mode, string sessionId)
+        {
+            ProviderCarrier carrier = new ProviderCarrier() { Route = "/advance/user/reset" };
+            carrier.AddAuth(sessionId);
+
+            carrier.ParamList.Add("id", id);
+            carrier.ParamList.Add("mode", mode);
+
+            Bridge.Connect(RC_RESET_PASSWORD, carrier);
+        }
+
+        public void Update(int id, int mode, string name, string avatar, 
+            string cellphone, string sessionId)
         {
             ProviderCarrier carrier = new ProviderCarrier() { Route = "/advance/user/update" };
             carrier.AddAuth(sessionId);
 
+            carrier.ParamList.Add("id", id);
+            carrier.ParamList.Add("mode", mode);
             carrier.ParamList.Add("avatar", avatar);
             carrier.ParamList.Add("name", name);
             carrier.ParamList.Add("cellphone", cellphone);
-            carrier.ParamList.Add("newPwd", newPwd);
-            carrier.ParamList.Add("pwdConfirm", pwdConfirm);
 
             Bridge.Connect(carrier);
         }
@@ -61,7 +76,7 @@ namespace CourseProvider.Providers.Advance
 
             carrier.ParamList.Add("mode", mode);
 
-            Bridge.Connect(carrier);
+            Bridge.Connect(RC_GET_ALL, carrier);
         }        
 
         public override void ProviderLoaded(object sender, ProviderLoadedEventArgs e)
@@ -69,13 +84,20 @@ namespace CourseProvider.Providers.Advance
             base.ProviderLoaded(sender, e);
 
             List<Profile> profileList = null;
+            string randomPwd = null;
 
             switch (e.RequestCode)
             {
                 case RC_GET_ALL:
                     if (e.IsSuccess)
                     {
-                        profileList = Parser.SerializeList<Profile>();
+                        profileList = Parser.Serialize<List<Profile>>();
+                    }
+                    break;
+                case RC_RESET_PASSWORD:
+                    if (e.IsSuccess)
+                    {
+                        randomPwd = Parser.Serialize<string>();
                     }
                     break;
                 default:
@@ -85,10 +107,11 @@ namespace CourseProvider.Providers.Advance
 
             if (ProfileEvent != null)
             {
-                UserManageEventArgs profileEventArgs = new UserManageEventArgs(profileList);
-                profileEventArgs.LoadEventArgs(e);
+                UserManageEventArgs userManageEventArgs = new UserManageEventArgs(profileList);
+                userManageEventArgs.RandomPassword = randomPwd;
+                userManageEventArgs.LoadEventArgs(e);
 
-                ProfileEvent(this, profileEventArgs);
+                ProfileEvent(this, userManageEventArgs);
             }
         }
     }

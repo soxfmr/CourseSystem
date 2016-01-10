@@ -15,17 +15,16 @@ namespace CourseServer
             Bootstrap.Load((config) =>
             {
                 config.DatabaseInfo.Format = GlobalSettings.CONNECTION_STRING_SQLSERVER;
-                // DbContextHelper.Init(typeof(CourseDbContext), config.DatabaseInfo.ToString());
+                DbContextHelper.Init(typeof(CourseDbContext), config.DatabaseInfo.ToString(), config.DatabaseInfo.Timeout);
                 // Debug only
-                DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 
-                    config.DatabaseInfo.Timeout);
+                /* DbContextHelper.Init(typeof(CourseDbContext), GlobalSettings.DATABASE.ConnectionString, 
+                    config.DatabaseInfo.Timeout) */
 
                 MiddlewareRegister.Add("auth", new AuthMiddleware(), priority : 9);
                 MiddlewareRegister.Add("studentACL", new AccessControlMiddleware(CourseProviderContract.MODE_STUDENT));
                 MiddlewareRegister.Add("teacherACL", new AccessControlMiddleware(CourseProviderContract.MODE_TEACHER));
                 MiddlewareRegister.Add("managerACL", new AccessControlMiddleware(CourseProviderContract.MODE_MANAGER));
-
-                MiddlewareRegister.Register(typeof(CourseController),       "auth", "Index");
+                
                 MiddlewareRegister.Register(typeof(DispatchController),     "auth", "Index", "DispatchStudent");
                 MiddlewareRegister.Register(typeof(AuthController),         "auth", "OnLogout");
                 MiddlewareRegister.Register(typeof(UserController),         "auth", "Profile", "Update", 
@@ -33,7 +32,13 @@ namespace CourseServer
                 MiddlewareRegister.Register(typeof(AbsenceController),      "auth", "Index", "AllChangeableAbsence",
                     "Store", "Update", "Destroy");
                 MiddlewareRegister.Register(typeof(AttendanceController),   "auth", "Index");
-                MiddlewareRegister.Register(typeof(UserManagerController),  "auth", "Store", "Profile", "Update", "Destroy", "AllUser");
+                MiddlewareRegister.Register(typeof(UserManagerController),  "auth", "Store", "Profile", "Update", "Destroy", "AllUser", "ResetPassword");
+
+                MiddlewareRegister.Register(typeof(ClassroomController),    "auth", "Store", "Update", "Destroy", "All");
+                MiddlewareRegister.Register(typeof(MajorController),        "auth", "Store", "Update", "Destroy", "All");
+                MiddlewareRegister.Register(typeof(CourseController),       "auth", "Store", "Update", "Destroy", "All");
+                MiddlewareRegister.Register(typeof(DispatchManageController), "auth", "Store", "Update", "Destroy", "All");
+
                 // Access Control List for student
                 MiddlewareRegister.Register(typeof(UserController),         "studentACL", "CreateDispatch", "RemoveDispatch");
                 MiddlewareRegister.Register(typeof(AbsenceController),      "studentACL", "Index", "AllChangeableAbsence", "Store", "Update", "Destroy");
@@ -43,7 +48,11 @@ namespace CourseServer
                 MiddlewareRegister.Register(typeof(AttendanceController),   "teacherACL", "CourseAttendance", "Store", "Destroy", "AddStudentAbsence");
                 MiddlewareRegister.Register(typeof(DispatchController),     "teacherACL", "DispatchStudent");
                 // Advanced Access Control List
-                MiddlewareRegister.Register(typeof(UserManagerController),  "managerACL", "Store", "Profile", "Update", "Destroy", "AllUser");
+                MiddlewareRegister.Register(typeof(UserManagerController),  "managerACL", "Store", "Profile", "Update", "Destroy", "AllUser", "ResetPassword");
+                MiddlewareRegister.Register(typeof(ClassroomController),    "managerACL", "Store", "Update", "Destroy", "All");
+                MiddlewareRegister.Register(typeof(MajorController),        "managerACL", "Store", "Update", "Destroy", "All");
+                MiddlewareRegister.Register(typeof(CourseController),       "managerACL", "Store", "Update", "Destroy", "All");
+                MiddlewareRegister.Register(typeof(DispatchManageController), "managerACL", "Store", "Update", "Destroy", "All");
 
                 Route.Add("/login", "AuthController@OnLogin", "email,pass,mode");
                 Route.Add("/register", "AuthController@OnRegister", "email,user,pass");
@@ -83,7 +92,28 @@ namespace CourseServer
                     Route.Add("/advance/user/profile", "UserManagerController@Profile", "id,mode");
                     Route.Add("/advance/user/store", "UserManagerController@Store", "email,user,pass,mode");
                     Route.Add("/advance/user/destroy", "UserManagerController@Destroy", "id,mode");
-                    Route.Add("/advance/user/update", "UserManagerController@Update", "id,mode,name,avatar,cellphone,newPwd,pwdConfirm");
+                    Route.Add("/advance/user/update", "UserManagerController@Update", "id,mode,name,avatar,cellphone");
+                    Route.Add("/advance/user/reset", "UserManagerController@ResetPassword", "id,mode");
+
+                    Route.Add("/advance/classroom", "ClassroomController@All");
+                    Route.Add("/advance/classroom/destroy", "ClassroomController@Destroy", "id");
+                    Route.Add("/advance/classroom/update", "ClassroomController@Update", "id,location");
+                    Route.Add("/advance/classroom/store", "ClassroomController@Store", "location");
+
+                    Route.Add("/advance/major", "MajorController@All");
+                    Route.Add("/advance/major/destroy", "MajorController@Destroy", "id");
+                    Route.Add("/advance/major/update", "MajorController@Update", "id,name,desc");
+                    Route.Add("/advance/major/store", "MajorController@Store", "name,desc");
+
+                    Route.Add("/advance/course", "CourseController@All");
+                    Route.Add("/advance/course/destroy", "CourseController@Destroy", "id");
+                    Route.Add("/advance/course/update", "CourseController@Update", "id,name,desc,majorId");
+                    Route.Add("/advance/course/store", "CourseController@Store", "name,desc,majorId");
+
+                    Route.Add("/advance/dispatch", "DispatchManageController@All");
+                    Route.Add("/advance/dispatch/destroy", "DispatchManageController@Destroy", "id");
+                    Route.Add("/advance/dispatch/update", "DispatchManageController@Update", "id,weekday,at,limit,teacherId,roomId");
+                    Route.Add("/advance/dispatch/store", "DispatchManageController@Store", "weekday,at,limit,teacherId,courseId,roomId");
                 });
             });
 

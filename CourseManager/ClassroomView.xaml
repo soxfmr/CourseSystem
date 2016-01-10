@@ -4,9 +4,63 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CourseManager"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:common="clr-namespace:CommonLibrary;assembly=CommonLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             Name="_this"
+             Style="{ StaticResource VisualComponent }" Padding="0"
+             d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <common:Toolbar Title="教学课室" PositionAdjustment="0" RefershCommand="{Binding DataContext.RefreshCommand, ElementName=_this}" BackVisibility="Hidden" />
+
+        <Grid Grid.Row="1" Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            Command="{Binding SelectAllCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    全选
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="8 0 0 0"
+                            Command="{Binding ReverseCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    反选
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            Command="{Binding RemoveClassroomCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    删除选中
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="8 0 0 0"
+                            Command="{Binding UpdateSelectedCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    提交选中修改
+                </Button>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right"
+                            Command="{Binding ShowComposeViewCommand}" Style="{StaticResource MaterialDesignFlatButton}" wpf:RippleAssist.IsCentered="True">
+                    添加课室
+                </Button>
+            </StackPanel>
+
+            <DataGrid Grid.Row="1" Background="#FFF" Margin="0 8 0 0" ItemsSource="{Binding ClassroomList, 
+                     UpdateSourceTrigger=PropertyChanged}"
+                      CanUserSortColumns="True" CanUserReorderColumns="False" CanUserAddRows="False" 
+                      CanUserDeleteRows="False" AutoGenerateColumns="False"
+                      wpf:DataGridAssist.CellPadding="13 8 8 8" wpf:DataGridAssist.ColumnHeaderPadding="8">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                                                ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}" />
+                    <wpf:MaterialDataGridTextColumn Binding="{Binding Location}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"
+                                            Header="课室地点" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>

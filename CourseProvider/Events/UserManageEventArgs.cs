@@ -11,6 +11,8 @@ namespace CourseProvider.Events
     {
         public List<Profile> UserProfileList;
 
+        public string RandomPassword;
+
         public UserManageEventArgs(List<Profile> userProfileList)
         {
             UserProfileList = userProfileList;

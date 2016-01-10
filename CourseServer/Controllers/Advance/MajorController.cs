@@ -1,4 +1,5 @@
-﻿using CourseServer.Repositories;
+﻿using CourseServer.Framework;
+using CourseServer.Repositories;
 using CourseServer.Views;
 using System;
 using System.Collections.Generic;
@@ -19,24 +20,62 @@ namespace CourseServer.Controllers.Advance
             majorRepo = new MajorRepository();
         }
 
-        public string Store(string name, string desc, int majorId, int creatorId)
+        public string Store(string name, string desc)
         {
-            return null;
+            Validator validator = new Validator();
+
+            // Validate the user input here.
+            if (!validator.Make(new string[] { name, desc },
+                new string[] { "required", "required" },
+                new string[] { "name", "desc" }))
+            {
+                return view.Error(validator.GetDetail());
+            }
+
+            bool bRet = majorRepo.Create(name, desc);
+
+            return bRet ? view.Success() : view.Error();
         }
 
         public string Destroy(int id)
         {
-            return null;
+            Validator validator = new Validator();
+
+            // Validate the user input here.
+            if (!validator.Make(new string[] { id + "" },
+                new string[] { "required" },
+                new string[] { "id" }))
+            {
+                return view.Error(validator.GetDetail());
+            }
+
+            bool bRet = majorRepo.Destroy(id);
+
+            return bRet ? view.Success() : view.Error();
         }
 
         public string All()
         {
-            return null;
+            var result = majorRepo.GetAll();
+
+            return view.Show(result);
         }
 
-        public string Update(string name, string desc, int majorId)
+        public string Update(int id, string name, string desc)
         {
-            return null;
+            Validator validator = new Validator();
+
+            // Validate the user input here.
+            if (!validator.Make(new string[] { id + "", name, desc },
+                new string[] { "required", "required", "required" },
+                new string[] { "id", "name", "desc" }))
+            {
+                return view.Error(validator.GetDetail());
+            }
+
+            bool bRet = majorRepo.Update(id, name, desc);
+
+            return bRet ? view.Success() : view.Error();
         }
     }
 }
